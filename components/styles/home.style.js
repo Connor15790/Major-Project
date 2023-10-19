@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     appTitle: {
-        fontSize: 30,
+        fontSize: 32,
         fontFamily: "Montserrat-Bold",
         color: "#51B209",
         textShadowColor: 'rgba(0, 0, 0, 0.75)',
         textShadowOffset: { width: -1, height: 1 },
-        textShadowRadius: 1
+        textShadowRadius: 0
     },
     homeButtons: {
         justifyContent: "center",

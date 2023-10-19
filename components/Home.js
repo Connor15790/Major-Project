@@ -1,14 +1,17 @@
-import * as React from 'react-native';
+import * as React from 'react';
 import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import { useCallback, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/home.style';
 
 SplashScreen.preventAutoHideAsync();
+Feather.loadFont();
+MaterialCommunityIcons.loadFont();
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
     let [fontsLoaded] = useFonts({
         "Montserrat-Bold": require("../assets/fonts/Montserrat-Bold.ttf"),
         "Montserrat-Medium": require("../assets/fonts/Montserrat-Medium.ttf"),
@@ -33,7 +36,7 @@ export default Home = () => {
                         source={require('../assets/images/Sam.jpg')}
                         style={styles.profileImage}
                     />
-                    <TouchableOpacity style={styles.loginBtn}>
+                    <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate("Auth")}>
                         <Text style={styles.loginText}>Login</Text>
                     </TouchableOpacity>
                 </View>
