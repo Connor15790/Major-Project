@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './components/Home';
 import Auth from './components/Auth';
+import Casualties from './components/Casualties';
 import Discarded from './components/Discarded';
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +26,13 @@ export default function App() {
             <Stack.Screen
                 name="Auth" 
                 component={Auth}
+                options={{
+                    headerShown: false
+                }} 
+            />
+            <Stack.Screen
+                name="Casualties" 
+                component={Casualties}
                 options={{
                     headerShown: false
                 }} 

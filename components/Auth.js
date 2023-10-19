@@ -11,7 +11,7 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Auth = () => {
+export default Auth = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -24,7 +24,7 @@ export default Auth = () => {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.homeWrapper}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                         <Feather name='home' size={24} style={{color: "white"}}/>
                     </TouchableOpacity>
                 </View>
