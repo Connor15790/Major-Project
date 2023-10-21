@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         alignItems: "center",
         flexDirection: "row",
-        marginTop: 50,
+        marginTop: 40,
         height: 40,
         paddingHorizontal: 35
     },
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     ageSearchWrapper: {
         width: 150,
-        marginLeft: 34,
+        marginLeft: 40,
     },
     ageBox: {
         backgroundColor: "white",
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     synopsisContainer: {
         justifyContent: "left",
         flexDirection: "row",
-        marginTop: 40,
+        marginTop: 50,
         paddingHorizontal: 35,
     },
     synopsisHeader: {
@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
     },
     synopsisBox: {
         backgroundColor: "white",
-
     },
     synopsisDropdown: {
         height: 200

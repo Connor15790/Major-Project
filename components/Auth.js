@@ -40,7 +40,7 @@ export default Auth = ({ navigation }) => {
                     <TextInput
                         style={styles.usernameSearchInput}
                         value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChangeText={(usernameInput) => setUsername(usernameInput)}
                         placeholder='Username'
                     />
                 </View>
@@ -52,7 +52,7 @@ export default Auth = ({ navigation }) => {
                     <TextInput
                         style={styles.passwordSearchInput}
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChangeText={(passwordInput) => setPassword(passwordInput)}
                         placeholder='Password'
                     />
                 </View>
@@ -68,7 +68,7 @@ export default Auth = ({ navigation }) => {
                 <TouchableOpacity style={styles.fpBtn}>
                     <Text style={styles.fpText}>Forgot Password?</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.regBtn}>
+                <TouchableOpacity style={styles.regBtn} onPress={() => navigation.navigate("Register")}>
                     <Text style={styles.regText}>Register</Text>
                 </TouchableOpacity>
             </View>

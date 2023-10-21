@@ -13,7 +13,7 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Casualties = () => {
+export default Casualties = ({ navigation }) => {
     const radioButtons = useMemo(() => ([
         {
             id: '1', // acts as primary key, should be unique and non-empty string
@@ -31,7 +31,7 @@ export default Casualties = () => {
             value: 'option3'
         }
     ]), []);
-
+    
     const [selectedId, setSelectedId] = useState();
     const [ageselected, setAgeSelected] = useState("");
     const [bgselected, setBgSelected] = useState("");
@@ -60,9 +60,11 @@ export default Casualties = () => {
     ]
 
     const synopsisdata = [
-        { key: '1', value: 'Fractures' },
-        { key: '2', value: 'Animal Bites' },
-        { key: '3', value: 'Mutilation' },
+        { key: '1', value: 'Leg Fracture' },
+        { key: '2', value: 'Dog Bite' },
+        { key: '3', value: 'Snake Bite' },
+        { key: '3', value: 'Heart Attack' },
+        { key: '3', value: 'Stroke' },
     ]
 
     return (
@@ -78,20 +80,36 @@ export default Casualties = () => {
                 <Text style={styles.titleText}>Patient Details</Text>
             </View>
 
+            <View style={styles.synopsisContainer}>
+                <Text style={styles.synopsisHeader}>Primary Synopsis*:</Text>
+            </View>
+
+            <View style={styles.psContainer}>
+                <SelectList
+                    setSelected={(val) => setSynopsisSelected(val)}
+                    data={synopsisdata}
+                    save="value"
+                    maxHeight={100}
+                    boxStyles={styles.synopsisBox}
+                    inputStyles={{ paddingHorizontal: 0 }}
+                    dropdownStyles={styles.synopsisDropdown}
+                />
+            </View>
+
             <View style={styles.nameSearchContainer}>
-                <Text style={styles.nameHeader}>Name:</Text>
+                <Text style={styles.nameHeader}>Name*:</Text>
                 <View style={styles.nameSearchWrapper}>
                     <TextInput
                         style={styles.nameSearchInput}
                         value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        onChangeText={(inputText) => setName(inputText)}
                         placeholder='Name'
                     />
                 </View>
             </View>
 
             <View style={styles.genderContainer}>
-                <Text style={styles.genderHeader}>Gender:</Text>
+                <Text style={styles.genderHeader}>Gender*:</Text>
                 <RadioGroup
                     style={styles.genderChoices}
                     radioButtons={radioButtons}
@@ -117,7 +135,7 @@ export default Casualties = () => {
             </View>
 
             <View style={styles.bgContainer}>
-                <Text style={styles.bgHeader}>Blood {"\n"}Group:</Text>
+                <Text style={styles.bgHeader}>Blood* {"\n"}Group:</Text>
                 <View style={styles.bgWrapper}>
                     <SelectList
                         setSelected={(val) => setBgSelected(val)}
@@ -131,24 +149,20 @@ export default Casualties = () => {
                 </View>
             </View>
 
-            <View style={styles.synopsisContainer}>
-                <Text style={styles.synopsisHeader}>Primary Synopsis:</Text>
-            </View>
-
-            <View style={styles.psContainer}>
-                <SelectList
-                    setSelected={(val) => setSynopsisSelected(val)}
-                    data={synopsisdata}
-                    save="value"
-                    maxHeight={100}
-                    boxStyles={styles.synopsisBox}
-                    inputStyles={{ paddingHorizontal: 0 }}
-                    dropdownStyles={styles.synopsisDropdown}
-                />
-            </View>
-
             <View style={styles.nextContainer}>
-                <TouchableOpacity style={styles.nextBtn}>
+                <TouchableOpacity 
+                    style={[styles.nextBtn, {
+                        backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
+                        borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1
+                    }]} 
+
+                    onPress={() => navigation.navigate("Casualties2", {
+                        synopsis: synopsisselected, 
+                        selectedId: selectedId,
+                        name: name
+                    })} 
+
+                    disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
                     <Text style={styles.nextBtnText}>Next</Text>
                 </TouchableOpacity>
             </View>
