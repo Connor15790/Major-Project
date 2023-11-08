@@ -59,8 +59,18 @@ export default Auth = ({ navigation }) => {
             </View>
 
             <View style={styles.loginBtn}>
-                <TouchableOpacity style={styles.loginWrapper}>
-                    <Text style={styles.loginButtonText}>Login</Text>
+                <TouchableOpacity 
+                    style={[styles.loginWrapper, {
+                        backgroundColor: !username || !password ? "#B7BCB5" : "#BBC7B8",
+                        borderWidth: !username || !password ? 0 : 1,
+                    }]} onPress={() => navigation.navigate("Home")}
+                    
+                    disabled={!username || !password ? true : false}>
+                    <Text 
+                        style={[styles.loginButtonText, {
+                            color: !username || !password ? "grey" : "black"
+                        }]}>Login
+                    </Text>
                 </TouchableOpacity>
             </View>
 

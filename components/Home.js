@@ -43,7 +43,7 @@ export default Home = ({ navigation }) => {
             </SafeAreaView>
 
             <View style={styles.titleWrapper}>
-                <Text style={styles.appTitle}>App Name</Text>
+                <Text style={styles.appTitle}>HCAA</Text>
             </View>
 
             <View style={styles.homeButtons}>
