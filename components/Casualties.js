@@ -27,7 +27,7 @@ export default Casualties = ({ navigation }) => {
         },
         {
             id: '3',
-            label: 'Other',
+            label: 'Trans',
             value: 'option3'
         }
     ]), []);

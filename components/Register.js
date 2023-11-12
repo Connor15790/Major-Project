@@ -6,13 +6,14 @@ import styles from './styles/register.style';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
+import axios from 'axios';
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Register = () => {
+export default Register = ({ navigation }) => {
     const [name, setName] = useState("");
     const [username, setUsername] = useState("");
     const [idnumber, setIdNumber] = useState("");
@@ -28,6 +29,35 @@ export default Register = () => {
         { key: '2', value: 'Nurse' },
         { key: '3', value: 'Manager' },
     ]
+
+    const handleRegister = async () => {
+        try {
+            const formData = {
+                name,
+                username,
+                idnumber,
+                licenceno,
+                profession,
+                password,
+                email,
+                phoneno
+            }
+
+            const response = await axios.post('http://localhost:3000/api/register', formData);
+
+            // If the login is successful, you can handle the response here.
+            // For example, you might save the token in AsyncStorage and navigate to the home screen.
+            if (response.status == 200) {
+                navigation.navigate("Register")
+            }
+
+            console.log('Login success:', response.data);
+
+        } catch (error) {
+            // Handle login failure
+            console.error('Login failed:', error);
+        }
+    };
 
     return (
         <ScrollView>
@@ -129,7 +159,7 @@ export default Register = () => {
                         <TextInput
                             style={styles.usernameSearchInput}
                             value={email}
-                            onChangeText={(email) => setEmail(pasemailsword)}
+                            onChangeText={(email) => setEmail(email)}
                             placeholder='Email'
                         />
                     </View>
@@ -148,8 +178,8 @@ export default Register = () => {
                 </View>
 
                 <View style={styles.loginBtn}>
-                    <TouchableOpacity style={styles.loginWrapper}>
-                        <Text style={styles.loginButtonText}>Login</Text>
+                    <TouchableOpacity style={styles.loginWrapper} onPress={handleRegister} >
+                        <Text style={styles.loginButtonText}>Create account</Text>
                     </TouchableOpacity>
                 </View>
             </View>
