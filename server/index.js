@@ -17,6 +17,7 @@ mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopol
 app.use(bodyParser.json());
 app.use('/api/login', require('./routers/login'))
 app.use('/api/register', require('./routers/register'))
+app.use('/api/casuality', require('./routers/casuality'))
 
 
 // app.post('/register', async (req, res) => {
