@@ -14,6 +14,7 @@ import Records from './components/Records';
 import Register from './components/Register';
 import Discarded from './components/Discarded';
 import DisplayModal from './components/common/DisplayModal';
+import Profile from './components/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ export default function App() {
                 component={Home}
                 options={{
                     headerShown: false
-                }} 
+                }}
             />
             <Stack.Screen
                 name="Auth" 
@@ -66,6 +67,13 @@ export default function App() {
             <Stack.Screen
                 name="Records" 
                 component={Records}
+                options={{
+                    headerShown: false
+                }} 
+            />
+            <Stack.Screen
+                name="Profile" 
+                component={Profile}
                 options={{
                     headerShown: false
                 }} 
