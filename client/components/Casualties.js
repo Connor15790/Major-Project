@@ -9,7 +9,6 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 
-
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
