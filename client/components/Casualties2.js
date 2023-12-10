@@ -13,7 +13,7 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Casualties2 = ({ route, navigation }) => {
+export default Casualties2 = ({ route, navigation, props }) => {
     const { synopsis, selectedId, name } = route.params;
 
     const [timeselected, setTimeSelected] = useState("");
@@ -42,12 +42,12 @@ export default Casualties2 = ({ route, navigation }) => {
     ]
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.titleWrapper}>
-                    <Text style={styles.titleText}>{synopsis}</Text>
-                </View>
 
+        <View style={styles.container}>
+            <View style={styles.titleWrapper}>
+                <Text style={styles.titleText}>{synopsis}</Text>
+            </View>
+            <ScrollView>
                 <View style={styles.timeWrapper}>
                     <Text style={styles.timeText}>Time of accident:</Text>
                 </View>
@@ -135,12 +135,12 @@ export default Casualties2 = ({ route, navigation }) => {
                         visible={modalVisible}>
                         <View style={styles.centeredView}>
                             <View style={styles.modalView}>
-                                <Text style={styles.modalText}>Hello World!</Text>
-                                <Pressable
+                                <Text style={styles.modalText}>Form has been submitted!</Text>
+                                <TouchableOpacity
                                     style={[styles.button, styles.buttonClose]}
                                     onPress={() => setModalVisible(!modalVisible)}>
-                                    <Text style={styles.textStyle}>Hide Modal</Text>
-                                </Pressable>
+                                    <Text style={styles.textStyle}>Close</Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
                     </Modal>
@@ -151,7 +151,8 @@ export default Casualties2 = ({ route, navigation }) => {
                         <Text style={styles.nextBtnText}>Submit</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
+        
     )
 }

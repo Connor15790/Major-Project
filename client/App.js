@@ -13,6 +13,7 @@ import Casualties3 from './components/Casualties3';
 import Records from './components/Records';
 import Register from './components/Register';
 import Discarded from './components/Discarded';
+import DisplayModal from './components/common/DisplayModal';
 
 const Stack = createNativeStackNavigator();
 
@@ -65,6 +66,13 @@ export default function App() {
             <Stack.Screen
                 name="Records" 
                 component={Records}
+                options={{
+                    headerShown: false
+                }} 
+            />
+            <Stack.Screen
+                name="DisplayModal" 
+                component={DisplayModal}
                 options={{
                     headerShown: false
                 }} 
