@@ -7,59 +7,34 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import { showToast } from './common/Toast';
 import * as SplashScreen from 'expo-splash-screen';
+import { apiPost } from './common/axios';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Auth = ({ navigation }) => {
-    const [name, setName] = useState("");
     const [username, setUsername] = useState("");
-    const [idnumber, setIdNumber] = useState("");
-    const [licenceno, setLicenceno] = useState("");
-    const [profession, setProfession] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmpassword, setConfirmPassword] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneno, setPhoneno] = useState("");
 
-    const handleLogin = async () => {
-        try {
+    async function handleLogin() {
+        fetch('http://localhost:3000/api/login')
+            .then(response => console.log("data got"))
+            .then(data => console.log("bdc"))
+            .catch(error => console.error('Error in API request:', error));
+        // console.log(response)
+        // console.log('Login button pressed')
+        //     const formData = {
+        //         username,
+        //         password,
+        //     }
 
-            if (password !== confirmpassword) {
-                return alert("Passwords do not match")
-            }
+        //     const response = await apiPost('/login', formData);
+        //     if (response.status == 200) {
+        //         navigation.navigate("Register")
+        //         showToast('success', 'Success', 'This is a success message');
+        //     } 
 
-            const formData = {
-                name,
-                username,
-                idnumber,
-                licenceno,
-                profession,
-                password,
-                email,
-                phoneno
-            }
-
-            const response = await axios.post('http://localhost:3000/api/register', formData);
-
-            // If the login is successful, you can handle the response here.
-            // For example, you might save the token in AsyncStorage and navigate to the home screen.
-            if (response.status == 200) {
-                navigation.navigate("Register")
-                showToast('success', 'Success', 'This is a success message');
-            }
-            console.log('Login success:', response.data);
-
-            // Example: Save the token in AsyncStorage or another storage method
-            // AsyncStorage.setItem('token', response.data.token);
-
-            // Navigate to the home screen
-            // navigation.navigate('Home');
-        } catch (error) {
-            // Handle login failure
-            console.error('Login failed:', error);
-        }
     };
 
     return (
@@ -117,7 +92,7 @@ export default Auth = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.regBtn}
                     // onPress={handleLogin}
-                onPress={() => navigation.navigate("Register")}
+                    onPress={() => navigation.navigate("Register")}
                 >
                     <Text style={styles.regText}>Register</Text>
                 </TouchableOpacity>

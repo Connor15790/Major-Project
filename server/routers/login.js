@@ -7,9 +7,14 @@ require('cookie-parser');
 
 
 router.route('/')
+.get((req,res)=>{
+    res.send("hello")
+
+})
     .post(async (req, res) => {
         var email = req.body.email;
         var password = req.body.password;
+        console.log(req.body, "hit route")
 
         const userFound = await user.findOne({ email })
 
