@@ -2,16 +2,18 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3000/api', // Replace with your API base URL
+  baseURL: 'http://192.168.1.11:3000/api', // Replace with your API base URL
   timeout: 5000, // Adjust the timeout as needed
   headers: {
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   },
 });
 
-export const apiGet = async (endpoint, params) => {
+export const apiGet = async (endpoint) => {
   try {
-    const response = await instance.get(endpoint, { params });
+    const response = await instance.get(endpoint);
     return response.data;
   } catch (error) {
     handleRequestError(error);

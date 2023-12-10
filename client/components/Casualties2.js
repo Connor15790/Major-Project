@@ -8,13 +8,14 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { apiPost, apiGet } from './common/axios';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Casualties2 = ({ route, navigation, props }) => {
-    const { synopsis, selectedId, name } = route.params;
+    const { synopsis, selectedId, name, bloodGroup, age } = route.params;
 
     const [timeselected, setTimeSelected] = useState("");
     const [siteselected, setSiteSelected] = useState("");
@@ -40,6 +41,36 @@ export default Casualties2 = ({ route, navigation, props }) => {
         { key: '5', value: '' },
         { key: '6', value: '' },
     ]
+
+    const submitForm = async () => {
+        try {
+            const formData = {
+                primarySynopsis: synopsis,
+                patientName: selectedId,
+                gender: "Male",
+                name,
+                timeOfAccident: timeselected,
+                // siteselected,
+                symptoms,
+                allergies,
+                previousMedications: prevmed
+            }
+
+            const response = await apiPost('/patientDetails', formData);
+
+            // If the login is successful, you can handle the response here.
+            // For example, you might save the token in AsyncStorage and navigate to the home screen.
+            if (response.status == 200) {
+                navigation.navigate("Casualties2")
+            }
+
+            console.log('Login success:', response.data);
+
+        } catch (error) {
+            // Handle login failure
+            console.error('Login failed:', error);
+        }
+    }
 
     return (
 
@@ -153,6 +184,6 @@ export default Casualties2 = ({ route, navigation, props }) => {
                 </View>
             </ScrollView>
         </View>
-        
+
     )
 }

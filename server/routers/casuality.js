@@ -14,13 +14,11 @@ router.route('/patientDetails')
                 gender,
                 age,
                 bloodGroup,
-                injuryDetails: {
-                    timeOfAccident,
-                    siteOfInjury,
-                    symptoms,
-                    allergies,
-                    previousMedications,
-                },
+                timeOfAccident,
+                siteOfInjury,
+                symptoms,
+                allergies,
+                previousMedications,
             } = req.body;
 
             const newCasuality = new casuality({
@@ -31,7 +29,7 @@ router.route('/patientDetails')
                 bloodGroup,
                 injuryDetails: {
                     timeOfAccident,
-                    siteOfInjury,
+                    // siteOfInjury,
                     symptoms,
                     allergies,
                     previousMedications,
@@ -47,7 +45,5 @@ router.route('/patientDetails')
             res.status(500).json({ error: 'Internal server error' });
         }
     })
-
-
 
 module.exports = router

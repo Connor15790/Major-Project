@@ -7,47 +7,48 @@ require('cookie-parser');
 
 
 router.route('/')
-.get((req,res)=>{
-    res.send("hello")
-
-})
+    // .get((req, res) => {
+    //     console.log("Route hit")
+    //     res.send("hello")
+    // })
     .post(async (req, res) => {
-        var email = req.body.email;
-        var password = req.body.password;
         console.log(req.body, "hit route")
+        var username = req.body.username;
+        var password = req.body.password;
 
-        const userFound = await user.findOne({ email })
+        const userFound = await user.findOne({ username })
 
         if (userFound == null) {
             return res.json({
-                status: "error",
+                status: 401,
                 message: "User does ont exist"
             });
         } else {
             const passMatch = await bcrypt.compare(password, userFound.password)
 
             if (passMatch) {
-                var accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET);
+                var accessToken = jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET);
 
-                const result = await user.findOneAndUpdate({ email }, {
+                const result = await user.findOneAndUpdate({ username }, {
                     $set: {
                         accessToken
                     }
                 })
                 console.log(result)
                 if (result !== null) {
-                    res.status(200).json({
+                    res.json({
+                        status: 200,
                         message: "User validated"
                     });
                 } else {
                     res.status(401).json({
-                        status: "error",
+                        status: 401,
                         message: "Invalid credentials"
                     });
                 }
             } else {
                 res.json({
-                    "status": "error",
+                    "status": 401,
                     "message": "Invalid credentials"
                 })
             }

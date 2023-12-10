@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import { showToast } from './common/Toast';
 import * as SplashScreen from 'expo-splash-screen';
-import { apiPost } from './common/axios';
+import { apiPost, apiGet } from './common/axios';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -18,23 +18,20 @@ export default Auth = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
     async function handleLogin() {
-        fetch('http://localhost:3000/api/login')
-            .then(response => console.log("data got"))
-            .then(data => console.log("bdc"))
-            .catch(error => console.error('Error in API request:', error));
-        // console.log(response)
-        // console.log('Login button pressed')
-        //     const formData = {
-        //         username,
-        //         password,
-        //     }
+        console.log('Login button pressed')
+        const formData = {
+            username,
+            password,
+        }
+        console.log(formData)
 
-        //     const response = await apiPost('/login', formData);
-        //     if (response.status == 200) {
-        //         navigation.navigate("Register")
-        //         showToast('success', 'Success', 'This is a success message');
-        //     } 
-
+        const response = await apiPost('/login', formData)
+        console.log(response)
+        if (response.status == 200) {
+            navigation.navigate("Home")
+        }else{
+            alert(response.message)
+        }
     };
 
     return (
@@ -81,14 +78,14 @@ export default Auth = ({ navigation }) => {
             </View>
 
             <View style={styles.loginBtn}>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={[styles.loginWrapper, {
                         backgroundColor: !username || !password ? "#B7BCB5" : "black",
                         borderWidth: !username || !password ? 0 : 1,
-                    }]} 
-                    
+                    }]}
+
                     onPress={handleLogin}
-                    
+
                     disabled={!username || !password ? true : false}>
                     <Text style={styles.loginButtonText}>Login</Text>
                 </TouchableOpacity>
