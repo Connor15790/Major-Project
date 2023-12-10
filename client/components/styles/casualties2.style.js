@@ -155,6 +155,24 @@ const styles = StyleSheet.create({
         fontFamily: "Montserrat-SemiBold",
         color: "white"
     },
+    centeredView: {
+
+    },
+    modalView: {
+
+    },
+    modalText: {
+
+    },
+    button: {
+
+    },
+    buttonClose: {
+
+    },
+    textStyle: {
+
+    },
 })
 
 export default styles;

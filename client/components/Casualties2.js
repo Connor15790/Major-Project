@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useCallback, useState, useMemo } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform, Modal, Pressable } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './styles/casualties2.style';
@@ -21,6 +21,7 @@ export default Casualties2 = ({ route, navigation }) => {
     const [symptoms, setSymptoms] = useState("");
     const [allergies, setAllergies] = useState("");
     const [prevmed, setPrevmed] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
 
     const timedata = [
         { key: '1', value: '10M-30M' },
@@ -127,9 +128,27 @@ export default Casualties2 = ({ route, navigation }) => {
                     </View>
                 </KeyboardAvoidingView>
 
+                <View style={styles.centeredView}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <Text style={styles.modalText}>Hello World!</Text>
+                                <Pressable
+                                    style={[styles.button, styles.buttonClose]}
+                                    onPress={() => setModalVisible(!modalVisible)}>
+                                    <Text style={styles.textStyle}>Hide Modal</Text>
+                                </Pressable>
+                            </View>
+                        </View>
+                    </Modal>
+                </View>
+
                 <View style={styles.nextContainer}>
-                    <TouchableOpacity style={styles.nextBtn} onPress={() => navigation.navigate("Casualties3")}>
-                        <Text style={styles.nextBtnText}>Next</Text>
+                    <TouchableOpacity style={styles.nextBtn} onPress={() => setModalVisible(true)}>
+                        <Text style={styles.nextBtnText}>Submit</Text>
                     </TouchableOpacity>
                 </View>
             </View>
