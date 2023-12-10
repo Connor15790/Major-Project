@@ -17,7 +17,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
     const { synopsis, selectedId, name } = route.params;
 
     const [timeselected, setTimeSelected] = useState("");
-    const [siteselected, setSiteSelected] = useState("");
+    // const [siteselected, setSiteSelected] = useState("");
     const [symptoms, setSymptoms] = useState("");
     const [allergies, setAllergies] = useState("");
     const [prevmed, setPrevmed] = useState("");
@@ -64,7 +64,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
                     />
                 </View>
 
-                <View style={styles.siteWrapper}>
+                {/* <View style={styles.siteWrapper}>
                     <Text style={styles.siteText}>Site of injury:</Text>
                 </View>
 
@@ -78,7 +78,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
                         inputStyles={{ paddingHorizontal: 0 }}
                         dropdownStyles={styles.siteDropdown}
                     />
-                </View>
+                </View> */}
 
                 <View style={styles.symptomsTitleWrapper}>
                     <Text style={styles.symptomsTitleText}>Symptoms:</Text>

@@ -135,7 +135,7 @@ export default Casualties = ({ navigation }) => {
             </View>
 
             <View style={styles.bgContainer}>
-                <Text style={styles.bgHeader}>Blood* {"\n"}Group:</Text>
+                <Text style={styles.bgHeader}>Blood Group*:</Text>
                 <View style={styles.bgWrapper}>
                     <SelectList
                         setSelected={(val) => setBgSelected(val)}
