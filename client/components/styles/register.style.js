@@ -44,8 +44,7 @@ const styles = StyleSheet.create({
     },
     professionSearchContainer: {
         justifyContent: "left",
-        flexDirection: "row",
-        marginTop: 40,
+        marginTop: 20,
         paddingHorizontal: 20,
     },
     professionHeader: {
@@ -55,15 +54,17 @@ const styles = StyleSheet.create({
     },
     professionSearchWrapper: {
         width: 150,
-        marginLeft: 20,
+        marginLeft: 0,
     },
     professionBox: {
         backgroundColor: "white",
-        height: 30,
+        height: 50,
         borderWidth: 0,
         borderRadius: 3,
         paddingVertical: 0,
-        alignItems: 'center'
+        alignItems: "center",
+        textAlign: "flex-start",
+        marginTop: 5
     },
     professionDropdown: {
         height: 200

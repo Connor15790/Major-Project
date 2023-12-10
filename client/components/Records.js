@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, Dimensions } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, Dimensions, Modal } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
@@ -15,6 +15,8 @@ MaterialCommunityIcons.loadFont();
 export default Records = () => {
     const [name, setName] = useState("");
     const [isChecked, setIsChecked] = useState(false);
+    const [patientModalVisible, setPatientModalVisible] = useState(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
     return (
         <View style={styles.container}>
@@ -43,254 +45,86 @@ export default Records = () => {
                 </TouchableOpacity>
             </View>
 
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={patientModalVisible}
+                backdropOpacity={0.5}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Roronoa Zoro</Text>
+                        <Text>Age: 22</Text>
+                        <Text>Gender: Male</Text>
+                        <Text>Blood Group: O+</Text>
+                        <Text>Synopsis: Location disorder, boozen addiction</Text>
+                        <View style={styles.closeBtn}>
+                            <TouchableOpacity
+                                style={[styles.button0, styles.buttonClose0]}
+                                onPress={() => setPatientModalVisible(!patientModalVisible)}>
+                                <Text style={styles.textStyle0}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={deleteModalVisible}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>Are you sure?</Text>
+                        <View style={styles.deleteButtons}>
+                            <TouchableOpacity
+                                style={[styles.button1, styles.buttonConfirm]}
+                                onPress={() => {}}>
+                                <Text style={styles.textStyle1}>Confirm</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.button2, styles.buttonClose]}
+                                onPress={() => setDeleteModalVisible(!deleteModalVisible)}>
+                                <Text style={styles.textStyle2}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
+
             <ScrollView>
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
+                <TouchableOpacity onPress={() => setPatientModalVisible(true)}>
+                    <View style={styles.cardContainer}>
+                        <View style={styles.dateContainer}>
+                            <Text style={styles.dateText}>9 Dec, 2023</Text>
+                            <Text style={styles.timeText}>10:00 pm</Text>
+                        </View>
+                        <View style={styles.patientDetails}>
+                            <Text style={styles.patientName}>Roronoa Zoro</Text>
+                            <Text style={styles.patientAge}>Age: 22</Text>
+                            <Text style={styles.patientGender}>Gender: Male</Text>
+                            <Text style={styles.patientSynopsis}>Location disorder,
+                                booze addiction</Text>
+                        </View>
+                        <View style={styles.checkPart}>
+                            <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
+                            <View style={styles.editnDelete}>
+                                <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
+                                    <Image
+                                        source={require('../assets/icons/edit.png')}
+                                        resizeMode='contain'
+                                        style={styles.editBtnImage} />
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.delBtn} onPress={() => setDeleteModalVisible(true)}>
+                                    <Image
+                                        source={require('../assets/icons/trash-2.png')}
+                                        resizeMode='contain'
+                                        style={styles.delBtnImage} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={styles.cardContainer}>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.dateText}>9 Dec, 2023</Text>
-                        <Text style={styles.timeText}>10:00 pm</Text>
-                    </View>
-                    <View style={styles.patientDetails}>
-                        <Text style={styles.patientName}>Roronoa Zoro</Text>
-                        <Text style={styles.patientAge}>Age: 22</Text>
-                        <Text style={styles.patientGender}>Gender: Male</Text>
-                        <Text style={styles.patientSynopsis}>Location disorder,
-                            booze addiction</Text>
-                    </View>
-                    <View style={styles.checkPart}>
-                        <CheckBox style={styles.check} isChecked={isChecked} onClick={() => setIsChecked(!isChecked)} />
-                        <View style={styles.editnDelete}>
-                            <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/edit.png')}
-                                    resizeMode='contain'
-                                    style={styles.editBtnImage} />
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.delBtn} onPress={() => { }}>
-                                <Image
-                                    source={require('../assets/icons/trash-2.png')}
-                                    resizeMode='contain'
-                                    style={styles.delBtnImage} />
-                            </TouchableOpacity>
-                        </View>
-                    </View>
-                </View>
+                </TouchableOpacity>
             </ScrollView>
         </View>
 

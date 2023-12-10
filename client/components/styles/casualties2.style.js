@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 30,
         borderRadius: 10,
-        marginLeft: 260,
+        marginLeft: 240,
         backgroundColor: "black"
     },
     nextBtnText: {
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 22,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
     },
     modalView: {
         margin: 20,

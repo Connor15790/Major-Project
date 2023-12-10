@@ -115,7 +115,7 @@ export default Register = ({ navigation }) => {
                 </View>
 
                 <View style={styles.professionSearchContainer}>
-                    <Text style={styles.professionHeader}>Age:</Text>
+                    <Text style={styles.professionHeader}>Profession:</Text>
                     <View style={styles.professionSearchWrapper}>
                         <SelectList
                             setSelected={(val) => setProfession(val)}

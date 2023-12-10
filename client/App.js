@@ -70,13 +70,6 @@ export default function App() {
                     headerShown: false
                 }} 
             />
-            <Stack.Screen
-                name="DisplayModal" 
-                component={DisplayModal}
-                options={{
-                    headerShown: false
-                }} 
-            />
         </Stack.Navigator>
     </NavigationContainer>
   );

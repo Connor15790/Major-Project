@@ -30,9 +30,8 @@ const styles = StyleSheet.create({
     },
     nameSearchContainer: {
         justifyContent: "left",
-        alignItems: "center",
-        flexDirection: "row",
-        marginTop: 40,
+        alignItems: "left",
+        marginTop: 20,
         height: 40,
         paddingHorizontal: 20
     },
@@ -43,11 +42,12 @@ const styles = StyleSheet.create({
     nameSearchWrapper: {
         flex: 1,
         backgroundColor: "white",
-        marginLeft: 20,
+        marginTop: 10,
         justifyContent: "center",
-        paddingLeft: 5,
+        paddingLeft: 10,
         borderRadius: 3,
         height: "80%",
+        paddingVertical: 20
     },
     nameSearchInput: {
         height: 20,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         alignItems: "center",
         flexDirection: "row",
-        marginTop: 40,
+        marginTop: 50,
         height: 40,
         paddingHorizontal: 20
     },
@@ -70,8 +70,7 @@ const styles = StyleSheet.create({
     },
     ageSearchContainer: {
         justifyContent: "left",
-        flexDirection: "row",
-        marginTop: 40,
+        marginTop: 15,
         paddingHorizontal: 20,
     },
     ageHeader: {
@@ -81,13 +80,14 @@ const styles = StyleSheet.create({
     },
     ageSearchWrapper: {
         width: 150,
-        marginLeft: 40,
+        marginLeft: 0,
+        marginTop: 10
     },
     ageBox: {
         backgroundColor: "white",
-        height: 30,
-        borderWidth: 0,
-        borderRadius: 3,
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 10,
         paddingVertical: 0,
         alignItems: 'center'
     },
@@ -96,8 +96,7 @@ const styles = StyleSheet.create({
     },
     bgContainer: {
         justifyContent: "left",
-        flexDirection: "row",
-        marginTop: 40,
+        marginTop: 20,
         paddingHorizontal: 20,
     },
     bgHeader: {
@@ -107,14 +106,14 @@ const styles = StyleSheet.create({
     },
     bgWrapper: {
         width: 150,
-        marginLeft: 18,
+        marginLeft: 0,
         marginTop: 7
     },
     bgBox: {
         backgroundColor: "white",
-        height: 30,
-        borderWidth: 0,
-        borderRadius: 3,
+        height: 40,
+        borderWidth: 1,
+        borderRadius: 10,
         paddingVertical: 0,
         alignItems: 'center'
     },
@@ -134,7 +133,7 @@ const styles = StyleSheet.create({
     },
     psContainer: {
         justifyContent: "left",
-        marginTop: 20,
+        marginTop: 10,
         paddingHorizontal: 20,
     },
     synopsisBox: {

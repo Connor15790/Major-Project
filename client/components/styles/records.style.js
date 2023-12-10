@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     editnDelete: {
         flex: 1,
         flexDirection: "row",
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
     },
     delBtn: {
         paddingTop: 45,
@@ -159,6 +159,91 @@ const styles = StyleSheet.create({
     delBtnImage: {
 
     },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: 'white',
+        borderRadius: 5,
+        paddingVertical: 30,
+        paddingHorizontal: 20,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalText: {
+        marginBottom: 10,
+        textAlign: 'center',
+        fontFamily: "Montserrat-SemiBold",
+        fontSize: 20,
+    },
+    button1: {
+        borderRadius: 10,
+        paddingVertical: 5,
+        elevation: 2,
+        marginTop: 10,
+        paddingHorizontal: 25,
+        marginHorizontal: 20,
+    },
+    button2: {
+        borderRadius: 10,
+        paddingVertical: 5,
+        elevation: 2,
+        marginTop: 10,
+        paddingHorizontal: 35,
+    },
+    buttonClose: {
+        backgroundColor: 'black',
+    },
+    textStyle1: {
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    textStyle2: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    closeBtn: {
+        
+    },
+    buttonConfirm: {
+        backgroundColor: "white"
+    },
+    deleteButtons: {
+        flexDirection: "row",
+        alignItems: "center",
+        padding: 20,
+        paddingVertical: 15,
+        marginRight: 18,
+        marginTop: 10
+    },
+    button0: {
+        borderRadius: 10,
+        paddingVertical: 5,
+        elevation: 2,
+        marginTop: 10,
+        paddingHorizontal: 12
+    },
+    buttonClose0: {
+        backgroundColor: 'black',
+    },
+    textStyle0: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    }
 })
 
 export default styles;
