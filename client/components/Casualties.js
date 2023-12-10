@@ -159,7 +159,9 @@ export default Casualties = ({ navigation }) => {
                     onPress={() => navigation.navigate("Casualties2", {
                         synopsis: synopsisselected, 
                         selectedId: selectedId,
-                        name: name
+                        name: name,
+                        age: ageselected,
+                        bloodGroup: bgselected
                     })} 
 
                     disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
