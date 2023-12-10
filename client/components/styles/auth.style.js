@@ -119,7 +119,8 @@ const styles = StyleSheet.create({
     },
     loginButtonText: {
         fontSize: 20,
-        fontFamily: "Montserrat-Medium"
+        fontFamily: "Montserrat-Medium",
+        color: "white"
     },
     regFP: {
         justifyContent: "center",

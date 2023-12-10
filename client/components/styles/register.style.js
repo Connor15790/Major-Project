@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     },
     usernameSearchContainer: {
         justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "row",
-        marginTop: 30,
-        height: 40,
+        alignItems: "left",
+        flexDirection: "column",
+        marginTop: 20,
+        height: 80,
         paddingHorizontal: 20
     },
     usernameHeader: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     usernameSearchWrapper: {
         flex: 1,
         backgroundColor: "white",
-        marginLeft: 10,
+        marginTop: 5,
         justifyContent: "center",
         paddingLeft: 5,
         borderRadius: 3,
@@ -39,7 +39,8 @@ const styles = StyleSheet.create({
     },
     usernameSearchInput: {
         height: 20,
-        fontSize: 16
+        fontSize: 16,
+        paddingHorizontal: 8
     },
     professionSearchContainer: {
         justifyContent: "left",
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     },
     professionSearchWrapper: {
         width: 150,
-        marginLeft: 40,
+        marginLeft: 20,
     },
     professionBox: {
         backgroundColor: "white",
@@ -83,7 +84,8 @@ const styles = StyleSheet.create({
     },
     loginButtonText: {
         fontSize: 20,
-        fontFamily: "Montserrat-Medium"
+        fontFamily: "Montserrat-Medium",
+        color: "white"
     },
 })
 

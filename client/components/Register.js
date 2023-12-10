@@ -60,12 +60,12 @@ export default Register = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <View style={styles.container}>
-                <View style={styles.registerHeader}>
-                    <Text style={styles.registerText}>Register</Text>
-                </View>
 
+        <View style={styles.container}>
+            <View style={styles.registerHeader}>
+                <Text style={styles.registerText}>Register</Text>
+            </View>
+            <ScrollView>
                 <View style={styles.usernameSearchContainer}>
                     <Text style={styles.usernameHeader}>Name*:</Text>
                     <View style={styles.usernameSearchWrapper}>
@@ -142,7 +142,7 @@ export default Register = ({ navigation }) => {
                 </View>
 
                 <View style={styles.usernameSearchContainer}>
-                    <Text style={styles.usernameHeader}>Confirm {"\n"}Password*:</Text>
+                    <Text style={styles.usernameHeader}>Confirm Password*:</Text>
                     <View style={styles.usernameSearchWrapper}>
                         <TextInput
                             style={styles.usernameSearchInput}
@@ -178,11 +178,17 @@ export default Register = ({ navigation }) => {
                 </View>
 
                 <View style={styles.loginBtn}>
-                    <TouchableOpacity style={styles.loginWrapper} onPress={handleRegister} >
+                    <TouchableOpacity
+                        style={[styles.loginWrapper, {
+                            backgroundColor: !name || !username || !idnumber || !licenceno || !password || !confirmpassword || !email || !phoneno ? "#B7BCB5" : "black",
+                            borderWidth: !username || !password ? 0 : 1,
+                        }]}
+
+                        onPress={handleRegister} >
                         <Text style={styles.loginButtonText}>Create account</Text>
                     </TouchableOpacity>
                 </View>
-            </View>
-        </ScrollView>
+            </ScrollView>
+        </View>
     )
 }
