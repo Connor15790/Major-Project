@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 30,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     usernameHeader: {
         fontSize: 16,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         flexDirection: "row",
         marginTop: 40,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     professionHeader: {
         fontSize: 16,

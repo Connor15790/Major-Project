@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 30,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     timeText: {
         fontSize: 20,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     timeddWrapper: {
         justifyContent: "left",
         marginTop: 10,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     timeBox: {
         backgroundColor: "white",
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 10,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     siteText: {
         fontSize: 20,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     siteddWrapper: {
         justifyContent: "left",
         marginTop: 10,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     siteBox: {
         backgroundColor: "white",
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 10,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     symptomsTitleText: {
         fontSize: 20,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     symptomsWrapper: {
         justifyContent: "left",
         marginTop: 10,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     symptomsInput: {
         backgroundColor: "white",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 10,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     allergiesTitleText: {
         fontSize: 20,
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
     allergiesWrapper: {
         justifyContent: "left",
         marginTop: 10,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     allergiesInput: {
         backgroundColor: "white",
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 10,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     prevmedTitleText: {
         fontSize: 20,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     prevmedWrapper: {
         justifyContent: "left",
         marginTop: 10,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     prevmedInput: {
         backgroundColor: "white",
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 30,
         borderRadius: 10,
-        marginLeft: 225,
+        marginLeft: 260,
         backgroundColor: "black"
     },
     nextBtnText: {

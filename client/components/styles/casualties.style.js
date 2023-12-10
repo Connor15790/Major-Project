@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 40,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     nameHeader: {
         fontSize: 16,
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         marginTop: 40,
         height: 40,
-        paddingHorizontal: 35
+        paddingHorizontal: 20
     },
     genderHeader: {
         fontSize: 16,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         flexDirection: "row",
         marginTop: 40,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     ageHeader: {
         fontSize: 16,
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         flexDirection: "row",
         marginTop: 40,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     bgHeader: {
         fontSize: 16,
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
         justifyContent: "left",
         flexDirection: "row",
         marginTop: 50,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     synopsisHeader: {
         fontSize: 16,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     psContainer: {
         justifyContent: "left",
         marginTop: 20,
-        paddingHorizontal: 35,
+        paddingHorizontal: 20,
     },
     synopsisBox: {
         backgroundColor: "white",
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 30,
         borderRadius: 10,
-        marginLeft: 225,
+        marginLeft: 260,
         backgroundColor: "black"
     },
     nextBtnText: {
