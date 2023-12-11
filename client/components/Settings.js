@@ -18,15 +18,18 @@ export default Settings = () => {
             </View>
 
             <View style={styles.aboutContainer}>
-                <View>
+                <View style={{ alignItems: "flex-start", flex: 1, flexDirection: "row" }}>
                     <Image
                         source={require("../assets/icons/info.png")}
                         resizeMode='contain'
                         style={styles.infoIcon}
                     />
+                    <Text style={styles.aboutText}>About</Text>
                 </View>
-                <Text style={styles.aboutText}>About</Text>
-                <View style={{alignItems: "flex-end", justifyContent: "flex-end"}}>
+                {/* <View style={{ alignItems: "flex", flex: 1 }}>
+                    
+                </View> */}
+                <View style={{ alignItems: "flex-end", flex: 1 }}>
                     <Image
                         source={require("../assets/icons/chevron-right.png")}
                         resizeMode='contain'
