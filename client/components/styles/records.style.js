@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
         // backgroundColor: "red",
         width: "25%",
         paddingVertical: 10,
+        alignItems: "center"
     },
     editBtn: {
         paddingTop: 45,
@@ -144,12 +145,13 @@ const styles = StyleSheet.create({
     },
     check: {
         alignItems: "flex-end",
-        paddingRight: 10
+        paddingRight: 0
     },
     editnDelete: {
         flex: 1,
         flexDirection: "row",
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
+        
     },
     delBtn: {
         paddingTop: 45,
