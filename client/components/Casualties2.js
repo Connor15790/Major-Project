@@ -16,7 +16,7 @@ Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Casualties2 = ({ route, navigation, props }) => {
-    const { synopsis, selectedId, name, bloodGroup, age } = route.params;
+    const { synopsis, selectedId, name, gender, bloodGroup, age } = route.params;
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -68,7 +68,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
             const formData = {
                 primarySynopsis: synopsis,
                 patientName: name,
-                gender: "Male",
+                gender: gender,
                 timeOfAccident: timeselected,
                 // siteselected,
                 bloodGroup,
