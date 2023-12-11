@@ -150,7 +150,7 @@ export default Casualties = ({ navigation }) => {
             </View>
 
             <View style={styles.nextContainer}>
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={[styles.nextBtn, {
                         backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
                         borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1

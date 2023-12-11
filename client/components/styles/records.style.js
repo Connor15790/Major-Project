@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     closeBtn: {
-        
+
     },
     buttonConfirm: {
         backgroundColor: "white"
@@ -243,7 +243,16 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+    },
+    noUsersContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    noUsersText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
 })
 
 export default styles;

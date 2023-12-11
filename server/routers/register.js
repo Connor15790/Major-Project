@@ -6,9 +6,11 @@ require('cookie-parser');
 
 router.route('/')
     .post(async (req, res) => {
-        const userExist = await user.findOne({ email: req.body.email })
+        console.log(req.body, "req.body")
+        // return res.json({ status: 200, message: "User created succesfully" })
+        const userExist = await user.findOne({ idnumber: req.body.idnumber })
         if (userExist) {
-            return res.json({ status: "error", "message": "Sorry user already exists" })
+            return res.json({ status: 401, message: "Sorry user already exists" })
         }
         const newUser = new user(req.body)
         //generating token
@@ -23,11 +25,12 @@ router.route('/')
             //     type: 'success'
             // }
             res.status(200).json({
+                status: 200,
                 message: 'User created succesfully'
             })
         }
         else {
-            res.json({ message: err.message, type: 'danger' })
+            res.json({ status: 401, message: err.message })
         }
     })
 

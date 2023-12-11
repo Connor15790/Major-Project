@@ -8,6 +8,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import axios from 'axios';
 import * as SplashScreen from 'expo-splash-screen';
+import { apiPost, apiGet } from './common/axios';
+
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -32,6 +34,10 @@ export default Register = ({ navigation }) => {
 
     const handleRegister = async () => {
         try {
+            if (password != confirmpassword) {
+                alert("Password and Confirm Password does not match")
+                return
+            }
             const formData = {
                 name,
                 username,
@@ -43,18 +49,17 @@ export default Register = ({ navigation }) => {
                 phoneno
             }
 
-            const response = await axios.post('http://localhost:3000/api/register', formData);
+            const response = await apiPost('/register', formData);
 
-            // If the login is successful, you can handle the response here.
-            // For example, you might save the token in AsyncStorage and navigate to the home screen.
             if (response.status == 200) {
-                navigation.navigate("Register")
+                navigation.navigate("Home")
+                alert(response.message)
+            } else {
+                alert(response.message)
             }
-
-            console.log('Login success:', response.data);
-
         } catch (error) {
             // Handle login failure
+            alert("Some error occured")
             console.error('Login failed:', error);
         }
     };

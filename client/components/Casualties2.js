@@ -46,17 +46,23 @@ export default Casualties2 = ({ route, navigation, props }) => {
         try {
             const formData = {
                 primarySynopsis: synopsis,
-                patientName: selectedId,
+                patientName: name,
                 gender: "Male",
-                name,
                 timeOfAccident: timeselected,
                 // siteselected,
+                bloodGroup,
                 symptoms,
                 allergies,
+                age,
                 previousMedications: prevmed
             }
 
-            const response = await apiPost('/patientDetails', formData);
+            const response = await apiPost('/casuality/patientDetails', formData);
+            if (response.status == 200) {
+                setModalVisible(!modalVisible)
+            } else {
+                alert(response.message)
+            }
 
             // If the login is successful, you can handle the response here.
             // For example, you might save the token in AsyncStorage and navigate to the home screen.
@@ -178,7 +184,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
                 </View>
 
                 <View style={styles.nextContainer}>
-                    <TouchableOpacity style={styles.nextBtn} onPress={() => setModalVisible(true)}>
+                    <TouchableOpacity style={styles.nextBtn} onPress={submitForm}>
                         <Text style={styles.nextBtnText}>Submit</Text>
                     </TouchableOpacity>
                 </View>

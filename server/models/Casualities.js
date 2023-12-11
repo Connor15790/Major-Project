@@ -7,6 +7,7 @@ const casualitySchema = new mongoose.Schema({
     age: { type: String },
     bloodGroup: { type: String },
     checked: { type: Boolean, default: false },
+    doctorIncharge: { type: String },
     injuryDetails: { type: mongoose.Schema.Types.ObjectId, ref: 'InjuryDetails' },
 });
 
