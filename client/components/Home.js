@@ -25,13 +25,6 @@ export default Home = ({ navigation }) => {
         { label: 'Settings', value: 'settings' },
     ]);
 
-    const handleOpenBottomSheet = () => {
-        setIsBottomSheetOpen(true);
-    };
-
-    const handleCloseBottomSheet = () => {
-        setIsBottomSheetOpen(false);
-    };
 
     const handleDropdownChange = (item) => {
         // Handle actions based on selected dropdown item
