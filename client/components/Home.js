@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/home.style';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Navbar from './Navbar';
+import { Alert } from 'react-native';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -31,10 +32,33 @@ export default Home = ({ navigation, prop }) => {
         if (item === 'profile') {
             navigation.navigate("Profile1");
         }
-    
+        if (item == 'logout') {
+            showYesNoPrompt();
+        }
+
         // Close the dropdown after selection
         setOpen(false);
     };
+
+    const showYesNoPrompt = () => {
+        Alert.alert(
+            'Confirmation',
+            'Do you want to proceed?',
+            [
+                {
+                    text: 'No',
+                    onPress: () => console.log('No Pressed'),
+                    style: 'cancel',
+                },
+                {
+                    text: 'Yes',
+                    onPress: () => console.log('Yes Pressed'),
+                },
+            ],
+            { cancelable: false }
+        );
+    };
+
 
     let [fontsLoaded] = useFonts({
         "Montserrat-Bold": require("../assets/fonts/Montserrat-Bold.ttf"),
@@ -54,7 +78,7 @@ export default Home = ({ navigation, prop }) => {
 
     return (
         <View style={styles.container} onLayout={onLayoutRootView}>
-            <Navbar handleDropdownChange= {handleDropdownChange}/>
+            <Navbar handleDropdownChange={handleDropdownChange} />
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.appTitle}>App Name</Text>
