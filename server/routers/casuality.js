@@ -49,21 +49,21 @@ router.route('/patientDetails')
             // Save the document to the database
             await newCasuality.save();
 
-            res.status(201).json({ message: 'Data inserted successfully' });
+            res.status(200).json({ status: 200, message: 'Data inserted successfully' });
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'Internal server error' });
+            res.status(500).json({ status: 400, message: 'Internal server error' });
         }
     })
 
 router.route('/getPatient')
     .get(async (req, res) => {
-        const casualityData = await casuality.find().populate('injuryDetails');
+        const casualityData = (await casuality.find().populate('injuryDetails')).reverse();
 
         if (!casualityData) {
             res.json({ status: 404, message: 'No data found' });
         } else {
-            res.json({ tatus: 200, message: 'Data fetched successfully', data: casualityData });
+            res.json({ status: 200, message: 'Data fetched successfully', data: casualityData });
         }
     })
 

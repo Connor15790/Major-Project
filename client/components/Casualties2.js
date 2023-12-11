@@ -33,7 +33,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
         if (item === 'profile') {
             navigation.navigate("Profile1");
         }
-    
+
         // Close the dropdown after selection
         setOpen(false);
     };
@@ -80,16 +80,15 @@ export default Casualties2 = ({ route, navigation, props }) => {
 
             const response = await apiPost('/casuality/patientDetails', formData);
             if (response.status == 200) {
-                setModalVisible(!modalVisible)
+                // setModalVisible(!modalVisible)
+                navigation.navigate("Records")
+                alert(response.message)
             } else {
                 alert(response.message)
             }
 
             // If the login is successful, you can handle the response here.
             // For example, you might save the token in AsyncStorage and navigate to the home screen.
-            if (response.status == 200) {
-                navigation.navigate("Casualties2")
-            }
 
             console.log('Login success:', response.data);
 
@@ -102,7 +101,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
     return (
 
         <View style={styles.container}>
-            <Navbar handleDropdownChange= {handleDropdownChange}/>
+            <Navbar handleDropdownChange={handleDropdownChange} />
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.titleText}>{synopsis}</Text>
@@ -188,7 +187,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
                     </View>
                 </KeyboardAvoidingView>
 
-                
+
 
                 <View style={styles.centeredView}>
                     <Modal
