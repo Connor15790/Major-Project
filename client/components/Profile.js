@@ -1,12 +1,23 @@
 import * as React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
-import { useCallback, useState } from 'react';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { useCallback, useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/profile.style';
+import { apiPost, apiGet } from './common/axios';
+
 
 SplashScreen.preventAutoHideAsync();
 
 export default Profile = () => {
+
+    const [userData, setUserData] = useState([]);
+
+    useEffect(() => {
+        async function fetchUserData(){
+            const response = await apiPost('/register', formData);
+        }
+    })
+
     return (
         <View style={styles.container}>
             <View style={styles.titleWrapper}>
@@ -25,14 +36,13 @@ export default Profile = () => {
                 <Text style={styles.usernameHeader}>@roronoazoro</Text>
             </View>
 
-            <ScrollView>
-                <View style={{
-                    borderBottomColor: 'black',
-                    borderBottomWidth: 2,
-                    marginTop: 40,
-                    marginHorizontal: 50
-                }}>
-                </View>
+            <View style={{
+                borderBottomColor: 'black',
+                borderBottomWidth: 2,
+                marginTop: 40,
+                marginHorizontal: 50
+            }}>
+            </View>
 
                 <View style={styles.idContainer}>
                     <Text style={styles.idText}>ID Number</Text>
@@ -50,9 +60,9 @@ export default Profile = () => {
                 }}>
                 </View>
 
-                <View style={styles.licenseContainer}>
-                    <Text style={styles.licenseText}>License Number</Text>
-                </View>
+            <View style={styles.licenseContainer}>
+                <Text style={styles.licenseText}>License Number</Text>
+            </View>
 
                 <View style={styles.licensenoContainer}>
                     <Text style={styles.licensenoText}>AS01 736473143149</Text>
@@ -66,9 +76,9 @@ export default Profile = () => {
                 }}>
                 </View>
 
-                <View style={styles.profContainer}>
-                    <Text style={styles.profText}>Profession</Text>
-                </View>
+            <View style={styles.profContainer}>
+                <Text style={styles.profText}>Profession</Text>
+            </View>
 
                 <View style={styles.professionContainer}>
                     <Text style={styles.professionText}>Doctor</Text>
@@ -82,9 +92,9 @@ export default Profile = () => {
                 }}>
                 </View>
 
-                <View style={styles.emContainer}>
-                    <Text style={styles.emText}>Email</Text>
-                </View>
+            <View style={styles.emContainer}>
+                <Text style={styles.emText}>Email</Text>
+            </View>
 
                 <View style={styles.emailContainer}>
                     <Text style={styles.emailText}>zorororonoa123@gmail.com</Text>
@@ -98,9 +108,9 @@ export default Profile = () => {
                 }}>
                 </View>
 
-                <View style={styles.phoneContainer}>
-                    <Text style={styles.phoneText}>Phone Number</Text>
-                </View>
+            <View style={styles.phoneContainer}>
+                <Text style={styles.phoneText}>Phone Number</Text>
+            </View>
 
                 <View style={styles.phonenoContainer}>
                     <Text style={styles.phonenoText}>+91 8638064514</Text>

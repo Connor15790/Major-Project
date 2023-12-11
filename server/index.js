@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use('/api/login', require('./routers/login'))
 app.use('/api/register', require('./routers/register'))
 app.use('/api/casuality', require('./routers/casuality'))
+app.use('/api/users', require('./routers/user'))
 
 
 // app.post('/register', async (req, res) => {
