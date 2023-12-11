@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useCallback, useState, useMemo } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './styles/casualties.style';
@@ -80,6 +80,7 @@ export default Casualties = ({ navigation }) => {
                 <Text style={styles.titleText}>Patient Details</Text>
             </View>
 
+            <ScrollView>
             <View style={styles.synopsisContainer}>
                 <Text style={styles.synopsisHeader}>Primary Synopsis*:</Text>
             </View>
@@ -149,6 +150,18 @@ export default Casualties = ({ navigation }) => {
                 </View>
             </View>
 
+            {/* <View style={styles.nameSearchContainer}>
+                <Text style={styles.nameHeader}>Name*:</Text>
+                <View style={styles.nameSearchWrapper}>
+                    <TextInput
+                        style={styles.nameSearchInput}
+                        value={name}
+                        onChangeText={(inputText) => setName(inputText)}
+                        placeholder='Name'
+                    />
+                </View>
+            </View> */}
+
             <View style={styles.nextContainer}>
                 <TouchableOpacity
                     style={[styles.nextBtn, {
@@ -168,6 +181,7 @@ export default Casualties = ({ navigation }) => {
                     <Text style={styles.nextBtnText}>Next</Text>
                 </TouchableOpacity>
             </View>
+            </ScrollView>
         </View>
     )
 }

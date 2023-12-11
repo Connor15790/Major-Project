@@ -71,15 +71,16 @@ const styles = StyleSheet.create({
     },
     loginBtn: {
         justifyContent: "center",
-        flexDirection: "column",
+        // flexDirection: "column",
         alignItems: "center",
+        marginBottom: 20
     },
     loginWrapper: {
         paddingVertical: 5,
         paddingHorizontal: 20,
         borderColor: "black",
         borderWidth: 1,
-        marginTop: 40,
+        marginTop: 20,
         borderRadius: 5,
         backgroundColor: "#BBC7B8",
     },

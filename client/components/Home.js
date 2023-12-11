@@ -44,10 +44,12 @@ export default Home = ({ navigation }) => {
         <View style={styles.container} onLayout={onLayoutRootView}>
             <SafeAreaView>
                 <View style={styles.headerWrapper}>
-                    <Image
-                        source={require('../assets/images/Sam.jpg')}
-                        style={styles.profileImage}
-                    />
+                    <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
+                        <Image
+                            source={require('../assets/images/Sam.jpg')}
+                            style={styles.profileImage}
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate("Auth")}>
                         <Image
                             source={require('../assets/icons/menu.png')}

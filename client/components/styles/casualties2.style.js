@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         textAlignVertical: "top",
     },
     nextContainer: {
-        marginTop: 10,
+        marginTop: 0,
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
