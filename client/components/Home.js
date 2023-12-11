@@ -12,7 +12,7 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Home = ({ navigation }) => {
+export default Home = ({ navigation, prop }) => {
     const windowHeight = Dimensions.get('window').height;
 
     const [open, setOpen] = useState(false);
@@ -53,40 +53,7 @@ export default Home = ({ navigation }) => {
 
     return (
         <View style={styles.container} onLayout={onLayoutRootView}>
-            <SafeAreaView>
-                <View style={styles.headerWrapper}>
-                    <Image
-                        source={require('../assets/images/Sam.jpg')}
-                        style={styles.profileImage}
-                    />
-                    <View style={styles.menuContainer}>
-                        <TouchableOpacity
-                            style={styles.menuBtn}
-                            onPress={() => setOpen((prevOpen) => !prevOpen)}
-                        >
-                            <Image source={require('../assets/icons/menu.png')} />
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View style={styles.dropdownWrapper}>
-                    <DropDownPicker
-                        open={open}
-                        value={value}
-                        items={items}
-                        onCh
-                        setOpen={setOpen}
-                        setValue={setValue}
-                        setItems={setItems}
-                        onChangeValue={handleDropdownChange}
-                        zIndex={1000} // Adjust zIndex as needed
-                        style={styles.dropdown}
-                        labelStyle= {{color: "red"}}
-                        containerStyle={styles.dropdownContainer}
-                        selectedLabelStyle={{ textStyle: { color: 'white' } }}
-                    />
-                </View>
-            </SafeAreaView>
+            <Navbar handleDropdownChange= {handleDropdownChange}/>
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.appTitle}>App Name</Text>
