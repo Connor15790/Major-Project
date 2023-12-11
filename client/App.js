@@ -17,6 +17,8 @@ import Profile1 from './components/Profile1';
 import { AuthProvider } from './contextApi/AuthContext';
 import Navbar from './components/Navbar';
 import Settings from './components/Settings';
+import About from './components/About';
+import Changepass from './components/Changepass';
 
 const Stack = createNativeStackNavigator();
 
@@ -91,6 +93,20 @@ export default function App() {
                     <Stack.Screen
                         name="Settings"
                         component={Settings}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="About"
+                        component={About}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Changepass"
+                        component={Changepass}
                         options={{
                             headerShown: false
                         }}

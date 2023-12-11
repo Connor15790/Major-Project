@@ -39,19 +39,6 @@ export default Auth = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <SafeAreaView style={styles.header}>
-                <View style={styles.backWrapper}>
-                    <TouchableOpacity>
-                        <Feather name='chevron-left' size={24} style={{ color: "black" }} />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.homeWrapper}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Home")}>
-                        <Feather name='home' size={24} style={{ color: "white" }} />
-                    </TouchableOpacity>
-                </View>
-            </SafeAreaView>
-
             <View style={styles.loginHeader}>
                 <Text style={styles.loginText}>Login</Text>
             </View>
