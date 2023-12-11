@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/home.style';
 import Profile from './Profile';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -16,12 +17,28 @@ export default Home = ({ navigation }) => {
     const windowHeight = Dimensions.get('window').height;
     const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Logout', value: 'logout' },
+        { label: 'Profile', value: 'profile' },
+        { label: 'Settings', value: 'settings' },
+    ]);
+
     const handleOpenBottomSheet = () => {
         setIsBottomSheetOpen(true);
     };
 
     const handleCloseBottomSheet = () => {
         setIsBottomSheetOpen(false);
+    };
+
+    const handleDropdownChange = (item) => {
+        // Handle actions based on selected dropdown item
+        console.log('Selected:', item.value);
+
+        // Close the dropdown after selection
+        setOpen(false);
     };
 
     let [fontsLoaded] = useFonts({
@@ -44,17 +61,33 @@ export default Home = ({ navigation }) => {
         <View style={styles.container} onLayout={onLayoutRootView}>
             <SafeAreaView>
                 <View style={styles.headerWrapper}>
-                    <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
-                        <Image
-                            source={require('../assets/images/Sam.jpg')}
-                            style={styles.profileImage}
+                    <Image
+                        source={require('../assets/images/Sam.jpg')}
+                        style={styles.profileImage}
+                    />
+                    <View style={styles.menuContainer}>
+                        <TouchableOpacity
+                            style={styles.menuBtn}
+                            onPress={() => setOpen((prevOpen) => !prevOpen)}
+                        >
+                            <Image source={require('../assets/icons/menu.png')} />
+                        </TouchableOpacity>
+
+                        <DropDownPicker
+                            open={open}
+                            value={value}
+                            items={items}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+                            onChangeValue={handleDropdownChange}
+                            zIndex={1000} // Adjust zIndex as needed
+                            style={styles.dropdown}
+                            containerStyle={styles.dropdownContainer}
+                            itemStyle={styles.dropdownItem}
+                            labelStyle={styles.dropdownLabel}
                         />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate("Auth")}>
-                        <Image
-                            source={require('../assets/icons/menu.png')}
-                        />
-                    </TouchableOpacity>
+                    </View>
                     {/* <Modal
                         animationType="slide"
                         transparent={true}
