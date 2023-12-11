@@ -44,6 +44,7 @@ export default Records = ({ navigation }) => {
     const [cardData, setCardData] = useState([]);
     const [originalCardData, setOriginalCardData] = useState([]);
     const [itemToDelete, setItemToDelete] = useState(null);
+    const [selectedPatient, setSelectedPatient] = useState(null);
 
     useEffect(() => {
         async function fetchPatientData() {
@@ -107,7 +108,7 @@ export default Records = ({ navigation }) => {
         setItemToDelete(itemId);
         setDeleteModalVisible(true);
     };
-  
+
     const confirmDelete = async () => {
         // console.log("Confirm btn pressed")
         try {
@@ -162,24 +163,34 @@ export default Records = ({ navigation }) => {
                 animationType="slide"
                 transparent={true}
                 visible={patientModalVisible}
-                backdropOpacity={0.5}>
+                backdropOpacity={0.5}
+            >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Roronoa Zoro</Text>
-                        <Text>Age: 22</Text>
-                        <Text>Gender: Male</Text>
-                        <Text>Blood Group: O+</Text>
-                        <Text>Synopsis: Location disorder, boozen addiction</Text>
+                        <Text style={styles.modalText}>{selectedPatient?.patientName}</Text>
+                        <Text>Age: {selectedPatient?.age}</Text>
+                        <Text>Gender: {selectedPatient?.gender}</Text>
+                        <Text>Blood Group: {selectedPatient?.bloodGroup}</Text>
+                        <Text>Synopsis: {selectedPatient?.primarySynopsis}</Text>
+                        <Text>Status: {selectedPatient?.checked? "Checked":"Not checked"}</Text>
+                        <Text>Symtoms: {selectedPatient?.injuryDetails?.symptoms}</Text>
+                        <Text>Allergies: {selectedPatient?.injuryDetails?.allergies}</Text>
+                        <Text>Previous Medications: {selectedPatient?.injuryDetails?.previousMedications}</Text>
                         <View style={styles.closeBtn}>
                             <TouchableOpacity
                                 style={[styles.button0, styles.buttonClose0]}
-                                onPress={() => setPatientModalVisible(!patientModalVisible)}>
+                                onPress={() => {
+                                    setPatientModalVisible(!patientModalVisible);
+                                    setSelectedPatient(null); // Clear selected patient after closing modal
+                                }}
+                            >
                                 <Text style={styles.textStyle0}>Close</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
                 </View>
             </Modal>
+
 
             <Modal
                 animationType="slide"
@@ -215,7 +226,10 @@ export default Records = ({ navigation }) => {
                 ).map((item) => (
                     <TouchableOpacity
                         key={item._id} // Make sure to use a unique key for each item
-                        onPress={() => setPatientModalVisible(true)}
+                        onPress={() => {
+                            setSelectedPatient(item);
+                            setPatientModalVisible(true);
+                        }}
                     >
                         <View style={styles.cardContainer}>
                             <View style={styles.dateContainer}>
@@ -267,8 +281,6 @@ export default Records = ({ navigation }) => {
                     </View>
                 )}
             </ScrollView>
-
-
         </View>
 
     )
