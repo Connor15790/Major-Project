@@ -133,11 +133,27 @@ export default Casualties2 = ({ route, navigation, props }) => {
                     </View>
                 </KeyboardAvoidingView>
 
+                <View style={styles.prevmedTitleWrapper}>
+                    <Text style={styles.prevmedTitleText}>Previous medications:</Text>
+                </View>
+
+                <KeyboardAvoidingView enabled={true}>
+                    <View style={styles.prevmedWrapper}>
+                        <TextInput
+                            style={styles.prevmedInput}
+                            value={prevmed}
+                            onChangeText={(inputText) => setPrevmed(inputText)}
+                            multiline={true}
+                            numberOfLines={4}
+                        />
+                    </View>
+                </KeyboardAvoidingView>
+
                 <View style={styles.allergiesTitleWrapper}>
                     <Text style={styles.allergiesTitleText}>Allergies:</Text>
                 </View>
 
-                <KeyboardAvoidingView enabled={true} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                <KeyboardAvoidingView enabled={true}>
                     <View style={styles.allergiesWrapper}>
                         <TextInput
                             style={styles.allergiesInput}
@@ -149,21 +165,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
                     </View>
                 </KeyboardAvoidingView>
 
-                <View style={styles.prevmedTitleWrapper}>
-                    <Text style={styles.prevmedTitleText}>Previous medications:</Text>
-                </View>
-
-                <KeyboardAvoidingView enabled={true} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-                    <View style={styles.prevmedWrapper}>
-                        <TextInput
-                            style={styles.prevmedInput}
-                            value={prevmed}
-                            onChangeText={(inputText) => setPrevmed(inputText)}
-                            multiline={true}
-                            numberOfLines={4}
-                        />
-                    </View>
-                </KeyboardAvoidingView>
+                
 
                 <View style={styles.centeredView}>
                     <Modal
