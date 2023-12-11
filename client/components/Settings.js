@@ -16,6 +16,24 @@ export default Settings = () => {
                 />
                 <Text style={styles.titleText}>Settings</Text>
             </View>
+
+            <View style={styles.aboutContainer}>
+                <View>
+                    <Image
+                        source={require("../assets/icons/info.png")}
+                        resizeMode='contain'
+                        style={styles.infoIcon}
+                    />
+                </View>
+                <Text style={styles.aboutText}>About</Text>
+                <View style={{alignItems: "flex-end", justifyContent: "flex-end"}}>
+                    <Image
+                        source={require("../assets/icons/chevron-right.png")}
+                        resizeMode='contain'
+                        style={styles.rightIcon}
+                    />
+                </View>
+            </View>
         </View>
     )
 }

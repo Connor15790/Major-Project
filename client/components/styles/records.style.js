@@ -140,9 +140,6 @@ const styles = StyleSheet.create({
         paddingTop: 45,
         alignItems: "left"
     },
-    editBtnImage: {
-
-    },
     check: {
         alignItems: "flex-end",
         paddingRight: 0
