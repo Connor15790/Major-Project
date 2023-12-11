@@ -4,10 +4,12 @@ import { useCallback, useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/profile.style';
 // import { apiPost, apiGet } from './common/axios';
+import { showYesNoPrompt } from './common/userPrompt';
+
 
 SplashScreen.preventAutoHideAsync();
 
-export default Profile = () => {
+export default Profile = ({navigation}) => {
 
     // const [userData, setUserData] = useState([]);
 
@@ -16,6 +18,19 @@ export default Profile = () => {
     //         const response = await apiPost('/register', formData);
     //     }
     // })
+
+    const logout = async () => {
+        console.log("done")
+        const userPressedYes = await showYesNoPrompt('Confirmation', 'Do you want to proceed?');
+        if (userPressedYes) {
+            navigation.navigate("Auth");
+            console.log('User pressed Yes');
+            // Perform actions for "Yes"
+        } else {
+            console.log('User pressed No');
+            // Perform actions for "No"
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -125,7 +140,7 @@ export default Profile = () => {
                 </View>
 
                 <View style={styles.logoutContainer}>
-                    <TouchableOpacity style={styles.logoutBtn}>
+                    <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
                         <Text style={styles.logoutText}>Logout</Text>
                     </TouchableOpacity>
                 </View>
