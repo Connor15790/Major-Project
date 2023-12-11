@@ -100,6 +100,7 @@ export default Register = ({ navigation }) => {
                     <View style={styles.usernameSearchWrapper}>
                         <TextInput
                             style={styles.usernameSearchInput}
+                            keyboardType='numeric'
                             value={idnumber}
                             onChangeText={(idnumberInput) => setIdNumber(idnumberInput)}
                             placeholder='Id No.'
@@ -159,7 +160,7 @@ export default Register = ({ navigation }) => {
                 </View>
 
                 <View style={styles.usernameSearchContainer}>
-                    <Text style={styles.usernameHeader}>Email*:</Text>
+                    <Text style={styles.usernameHeader}>Email:</Text>
                     <View style={styles.usernameSearchWrapper}>
                         <TextInput
                             style={styles.usernameSearchInput}
@@ -175,6 +176,7 @@ export default Register = ({ navigation }) => {
                     <View style={styles.usernameSearchWrapper}>
                         <TextInput
                             style={styles.usernameSearchInput}
+                            keyboardType='numeric'
                             value={phoneno}
                             onChangeText={(phoneno) => setPhoneno(phoneno)}
                             placeholder='Phone No.'
@@ -185,7 +187,7 @@ export default Register = ({ navigation }) => {
                 <View style={styles.loginBtn}>
                     <TouchableOpacity
                         style={[styles.loginWrapper, {
-                            backgroundColor: !name || !username || !idnumber || !licenceno || !password || !confirmpassword || !email || !phoneno ? "#B7BCB5" : "black",
+                            backgroundColor: !name || !username || !idnumber || !licenceno || !password || !confirmpassword || !phoneno ? "#B7BCB5" : "black",
                             borderWidth: !username || !password ? 0 : 1,
                         }]}
 

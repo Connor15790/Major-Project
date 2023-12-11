@@ -24,7 +24,7 @@ export default Profile = () => {
 
             <View style={styles.headerWrapper}>
                 <Image
-                    source={require('../assets/images/Sam.jpg')}
+                    source={require('../assets/images/doctor.jpg')}
                     style={styles.profileImage}
                 />
             </View>
@@ -64,7 +64,7 @@ export default Profile = () => {
                 </View>
 
                 <View style={styles.licensenoContainer}>
-                    <Text style={styles.licensenoText}>AS01 736473143149</Text>
+                    <Text style={styles.licensenoText}>AMC-672878</Text>
                 </View>
 
                 <View style={{

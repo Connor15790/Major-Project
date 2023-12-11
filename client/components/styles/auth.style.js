@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
     },
     regFP: {
         justifyContent: "center",
-        alignItems: "left",
-        marginTop: 35,
+        alignItems: "center",
+        marginTop: 15,
         height: 40,
         paddingHorizontal: 35,
     },
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     regText: {
-        fontSize: 17,
+        fontSize: 20,
         textDecorationLine: "underline",
         color: "black"
     },

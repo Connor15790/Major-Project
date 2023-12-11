@@ -25,7 +25,7 @@ export default Profile = () => {
 
             <View style={styles.headerWrapper}>
                 <Image
-                    source={require('../assets/images/Sam.jpg')}
+                    source={require('../assets/images/doctor.jpg')}
                     style={styles.profileImage}
                 />
             </View>
