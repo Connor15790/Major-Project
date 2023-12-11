@@ -33,6 +33,8 @@ export default Home = ({ navigation, prop }) => {
 
         if (item === 'profile') {
             navigation.navigate("Profile1");
+        } else if (item === 'settings') {
+            navigation.navigate("Settings");
         }
         if (item == 'logout') {
             const userPressedYes = await showYesNoPrompt('Confirmation', 'Do you want to proceed?');
