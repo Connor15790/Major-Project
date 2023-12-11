@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/home.style';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 
@@ -18,6 +19,7 @@ export default Navbar = ({ navigation, handleDropdownChange }) => {
         { label: 'Logout', value: 'logout', },
     ]);
 
+    
     return (
         <View>
             <SafeAreaView>

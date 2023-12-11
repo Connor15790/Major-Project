@@ -9,6 +9,8 @@ import styles from './styles/home.style';
 import DropDownPicker from 'react-native-dropdown-picker';
 import Navbar from './Navbar';
 import { Alert } from 'react-native';
+import { showYesNoPrompt } from './common/userPrompt';
+
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -25,7 +27,7 @@ export default Home = ({ navigation, prop }) => {
         { label: 'Logout', value: 'logout', },
     ]);
 
-    const handleDropdownChange = (item) => {
+    const handleDropdownChange = async (item) => {
         // Handle actions based on selected dropdown item
         // console.log('Selected:', item);
 
@@ -33,30 +35,19 @@ export default Home = ({ navigation, prop }) => {
             navigation.navigate("Profile1");
         }
         if (item == 'logout') {
-            showYesNoPrompt();
+            const userPressedYes = await showYesNoPrompt('Confirmation', 'Do you want to proceed?');
+            if (userPressedYes) {
+                navigation.navigate("Auth");
+                console.log('User pressed Yes');
+                // Perform actions for "Yes"
+            } else {
+                console.log('User pressed No');
+                // Perform actions for "No"
+            }
         }
 
         // Close the dropdown after selection
         setOpen(false);
-    };
-
-    const showYesNoPrompt = () => {
-        Alert.alert(
-            'Confirmation',
-            'Do you want to proceed?',
-            [
-                {
-                    text: 'No',
-                    onPress: () => console.log('No Pressed'),
-                    style: 'cancel',
-                },
-                {
-                    text: 'Yes',
-                    onPress: () => console.log('Yes Pressed'),
-                },
-            ],
-            { cancelable: false }
-        );
     };
 
 

@@ -18,7 +18,7 @@ export default Auth = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const { login } = useAuth();
+    // const { login } = useAuth();
 
     async function handleLogin() {
         console.log('Login button pressed')
@@ -95,9 +95,9 @@ export default Auth = ({ navigation }) => {
             </View>
 
             <View style={styles.regFP}>
-                <TouchableOpacity style={styles.fpBtn}>
+                {/* <TouchableOpacity style={styles.fpBtn}>
                     <Text style={styles.fpText}>Forgot Password?</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 <TouchableOpacity style={styles.regBtn}
                     // onPress={handleLogin}
                     onPress={() => navigation.navigate("Register")}
