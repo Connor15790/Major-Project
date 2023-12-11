@@ -15,71 +15,74 @@ import Register from './components/Register';
 import Discarded from './components/Discarded';
 import DisplayModal from './components/common/DisplayModal';
 import Profile from './components/Profile';
+import { AuthProvider } from './contextApi/AuthContext';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <NavigationContainer>
-        <Stack.Navigator>
-            <Stack.Screen
-                name="Home" 
-                component={Home}
-                options={{
-                    headerShown: false
-                }}
-            />
-            <Stack.Screen
-                name="Auth" 
-                component={Auth}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Register" 
-                component={Register}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Casualties" 
-                component={Casualties}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Casualties2" 
-                component={Casualties2}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Casualties3" 
-                component={Casualties3}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Records" 
-                component={Records}
-                options={{
-                    headerShown: false
-                }} 
-            />
-            <Stack.Screen
-                name="Profile" 
-                component={Profile}
-                options={{
-                    headerShown: false
-                }} 
-            />
-        </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <AuthProvider>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Auth"
+                        component={Auth}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Register"
+                        component={Register}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Casualties"
+                        component={Casualties}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Casualties2"
+                        component={Casualties2}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Casualties3"
+                        component={Casualties3}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Records"
+                        component={Records}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Profile"
+                        component={Profile}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </AuthProvider>
+    );
 }
 
