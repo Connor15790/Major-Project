@@ -13,7 +13,7 @@ import Casualties3 from './components/Casualties3';
 import Records from './components/Records';
 import Register from './components/Register';
 import Discarded from './components/Discarded';
-import Profile from './components/Profile';
+import Profile1 from './components/Profile1';
 import { AuthProvider } from './contextApi/AuthContext';
 
 const Stack = createNativeStackNavigator();
@@ -73,8 +73,8 @@ export default function App() {
                         }}
                     />
                     <Stack.Screen
-                        name="Profile"
-                        component={Profile}
+                        name="Profile1"
+                        component={Profile1}
                         options={{
                             headerShown: false
                         }}

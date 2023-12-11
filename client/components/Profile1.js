@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, Scrollview } from 'react-native';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { useCallback, useState, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/profile.style';
-// import { apiPost, apiGet } from './common/axios';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -35,8 +34,8 @@ export default Profile = () => {
                 <Text style={styles.usernameHeader}>@roronoazoro</Text>
             </View>
 
-            <Scrollview>
-                <View style={{
+            <ScrollView>
+            <View style={{
                     borderBottomColor: 'black',
                     borderBottomWidth: 2,
                     marginTop: 40,
@@ -129,7 +128,7 @@ export default Profile = () => {
                         <Text style={styles.logoutText}>Logout</Text>
                     </TouchableOpacity>
                 </View>
-            </Scrollview>
+                </ScrollView>
         </View>
     )
 }
