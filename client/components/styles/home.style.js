@@ -4,6 +4,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1
     },
+    menuContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    menuBtn: {
+        marginRight: 10,
+    },
+    dropdown: {
+        display: 'none',
+    },
+    dropdownContainer: {
+        height: 40,
+        marginBottom: 20,
+    },
+    dropdownItem: {
+        justifyContent: 'flex-start',
+    },
+    dropdownLabel: {
+        fontSize: 16,
+    },
     headerWrapper: {
         flexDirection: 'row',
         justifyContent: 'space-between',

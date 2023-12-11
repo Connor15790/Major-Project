@@ -27,8 +27,13 @@ export default Records = () => {
     useEffect(() => {
         async function fetchPatientData() {
             const response = await apiGet('/casuality/getPatient')
+            const initialCheckedItems = response.data.reduce((acc, item) => {
+                acc[item._id] = item.checked;
+                return acc;
+              }, {});
             setCardData(response.data)
             setOriginalCardData(response.data);
+            setCheckedItems(initialCheckedItems);
             console.log(response.data)
         }
         fetchPatientData()
@@ -53,11 +58,14 @@ export default Records = () => {
 
 
     //function to toggle different checkboxes
-    const toggleCheckbox = (itemId) => {
+    const toggleCheckbox = async(itemId) => {
+        console.log("Checkbox toggled")
         setCheckedItems((prevCheckedItems) => ({
             ...prevCheckedItems,
             [itemId]: !prevCheckedItems[itemId],
         }));
+        const toggleResponse = await apiPost('/casuality/togglePatientCheck', { patientId: itemId });
+        
     };
 
     // Function to filter cardData based on the search name
@@ -80,22 +88,23 @@ export default Records = () => {
     };
 
     const confirmDelete = async () => {
-        console.log("Confirm btn pressed")
+        // console.log("Confirm btn pressed")
         try {
-            // Perform the deletion logic, you can use your API endpoint here
-            // For now, I'll just log a message
             console.log(`Deleting item with id: ${itemToDelete}`);
-            const deleteResponse = await apiPost('/casuality/deletePatient');
+            const deleteResponse = await apiPost('/casuality/deletePatient', { patientId: itemToDelete });
 
-            // Assuming you want to update the cardData after deletion, you can fetch the updated data
-            // const response = await apiGet('/casuality/getPatient');
-            // setCardData(response.data);
-
+            if (deleteResponse) {
+                alert(deleteResponse.message)
+                // update the cardData after deletion
+                const response = await apiGet('/casuality/getPatient');
+                setDeleteModalVisible(false);
+                setCardData(response.data);
+            } else {
+                alert(deleteResponse.message)
+            }
             // Close the modal after deletion
-            setDeleteModalVisible(false);
         } catch (error) {
             console.error('Error deleting item:', error);
-            // Handle error, show an alert, etc.
         }
     };
 
