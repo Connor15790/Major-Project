@@ -67,9 +67,66 @@ router.route('/getPatient')
         }
     })
 
+router.route('/togglePatientCheck')
+    .post(async (req, res) => {
+        try {
+            const { patientId } = req.body;
+            console.log(patientId)
+            // Assuming patientId is provided in the request body
+            if (!patientId) {
+                return res.json({ status: 401, message: 'Patient ID is required' });
+            }
+
+            // Find the casuality by ID and populate the injuryDetails field
+            const CasualityFound = await casuality.findById(patientId).populate('injuryDetails');
+
+            if (!casuality) {
+                return res.json({ error: 'Patient not found' });
+            }
+
+            // Toggle the checked field
+            CasualityFound.checked = !CasualityFound.checked;
+
+            // Save the updated document to the database
+            await CasualityFound.save();
+
+            res.json({ status: 200, message: 'Patient checked status updated successfully', data: CasualityFound });
+        } catch (error) {
+            console.error('Error updating patient checked status:', error);
+            res.json({ status: 500, message: 'Internal server error' });
+        }
+    })
+
 router.route('/deletePatient')
-    .post((req, res) => {
-        
+    .post(async (req, res) => {
+        try {
+            const { patientId } = req.body;
+            console.log(patientId)
+
+            // Assuming patientId is provided in the request body
+            if (!patientId) {
+                return res.json({ status: 401, message: 'Patient ID is required' });
+            }
+
+            // Find the casuality by ID and populate the injuryDetails field
+            const CasualityFound = await casuality.findById(patientId).populate('injuryDetails');
+
+            if (!casuality) {
+                return res.json({ error: 'Patient not found' });
+            }
+            // Remove the related injuryDetail
+            if (CasualityFound.injuryDetails) {
+                await InjuryDetails.findByIdAndDelete(CasualityFound.injuryDetails._id);
+            }
+
+            // Remove the casuality
+            await casuality.findByIdAndDelete(patientId);
+
+            res.json({ status: 200, message: 'Patient and related details deleted successfully' });
+        } catch (error) {
+            console.error('Error deleting patient:', error);
+            res.json({ status: 500, message: 'Internal server error' });
+        }
     })
 
 module.exports = router
