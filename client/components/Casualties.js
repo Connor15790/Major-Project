@@ -30,7 +30,7 @@ export default Casualties = ({ navigation }) => {
         if (item === 'profile') {
             navigation.navigate("Profile1");
         }
-    
+
         // Close the dropdown after selection
         setOpen(false);
     };
@@ -52,8 +52,9 @@ export default Casualties = ({ navigation }) => {
             value: 'option3'
         }
     ]), []);
-    
+
     const [selectedId, setSelectedId] = useState();
+    const [selectedLabel, setSelectedLabel] = useState(null);
     const [ageselected, setAgeSelected] = useState("");
     const [bgselected, setBgSelected] = useState("");
     const [synopsisselected, setSynopsisSelected] = useState("");
@@ -90,83 +91,89 @@ export default Casualties = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Navbar handleDropdownChange= {handleDropdownChange}/>
+            <Navbar handleDropdownChange={handleDropdownChange} />
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.titleText}>Patient Details</Text>
             </View>
 
             <ScrollView>
-            <View style={styles.synopsisContainer}>
-                <Text style={styles.synopsisHeader}>Primary Synopsis*:</Text>
-            </View>
-
-            <View style={styles.psContainer}>
-                <SelectList
-                    setSelected={(val) => setSynopsisSelected(val)}
-                    data={synopsisdata}
-                    save="value"
-                    maxHeight={100}
-                    boxStyles={styles.synopsisBox}
-                    inputStyles={{ paddingHorizontal: 0 }}
-                    dropdownStyles={styles.synopsisDropdown}
-                />
-            </View>
-
-            <View style={styles.nameSearchContainer}>
-                <Text style={styles.nameHeader}>Name*:</Text>
-                <View style={styles.nameSearchWrapper}>
-                    <TextInput
-                        style={styles.nameSearchInput}
-                        value={name}
-                        onChangeText={(inputText) => setName(inputText)}
-                        placeholder='Name'
-                    />
+                <View style={styles.synopsisContainer}>
+                    <Text style={styles.synopsisHeader}>Primary Synopsis*:</Text>
                 </View>
-            </View>
 
-            <View style={styles.genderContainer}>
-                <Text style={styles.genderHeader}>Gender*:</Text>
-                <RadioGroup
-                    style={styles.genderChoices}
-                    radioButtons={radioButtons}
-                    onPress={setSelectedId}
-                    selectedId={selectedId}
-                    layout='row'
-                />
-            </View>
-
-            <View style={styles.ageSearchContainer}>
-                <Text style={styles.ageHeader}>Age:</Text>
-                <View style={styles.ageSearchWrapper}>
+                <View style={styles.psContainer}>
                     <SelectList
-                        setSelected={(val) => setAgeSelected(val)}
-                        data={agedata}
+                        setSelected={(val) => setSynopsisSelected(val)}
+                        data={synopsisdata}
                         save="value"
                         maxHeight={100}
-                        boxStyles={styles.ageBox}
+                        boxStyles={styles.synopsisBox}
                         inputStyles={{ paddingHorizontal: 0 }}
-                        dropdownStyles={styles.ageDropdown}
+                        dropdownStyles={styles.synopsisDropdown}
                     />
                 </View>
-            </View>
 
-            <View style={styles.bgContainer}>
-                <Text style={styles.bgHeader}>Blood Group*:</Text>
-                <View style={styles.bgWrapper}>
-                    <SelectList
-                        setSelected={(val) => setBgSelected(val)}
-                        data={bgdata}
-                        save="value"
-                        maxHeight={100}
-                        boxStyles={styles.bgBox}
-                        inputStyles={{ paddingHorizontal: 0 }}
-                        dropdownStyles={styles.bgDropdown}
+                <View style={styles.nameSearchContainer}>
+                    <Text style={styles.nameHeader}>Name*:</Text>
+                    <View style={styles.nameSearchWrapper}>
+                        <TextInput
+                            style={styles.nameSearchInput}
+                            value={name}
+                            onChangeText={(inputText) => setName(inputText)}
+                            placeholder='Name'
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.genderContainer}>
+                    <Text style={styles.genderHeader}>Gender*:</Text>
+                    <RadioGroup
+                        style={styles.genderChoices}
+                        radioButtons={radioButtons}
+                        onPress={(id) => {
+                            setSelectedId(id);
+                            const selectedRadioButton = radioButtons.find(button => button.id === id);
+                            if (selectedRadioButton) {
+                                setSelectedLabel(selectedRadioButton.label);
+                            }
+                        }}
+                        selectedId={selectedId}
+                        layout='row'
                     />
                 </View>
-            </View>
 
-            {/* <View style={styles.nameSearchContainer}>
+                <View style={styles.ageSearchContainer}>
+                    <Text style={styles.ageHeader}>Age:</Text>
+                    <View style={styles.ageSearchWrapper}>
+                        <SelectList
+                            setSelected={(val) => setAgeSelected(val)}
+                            data={agedata}
+                            save="value"
+                            maxHeight={100}
+                            boxStyles={styles.ageBox}
+                            inputStyles={{ paddingHorizontal: 0 }}
+                            dropdownStyles={styles.ageDropdown}
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.bgContainer}>
+                    <Text style={styles.bgHeader}>Blood Group*:</Text>
+                    <View style={styles.bgWrapper}>
+                        <SelectList
+                            setSelected={(val) => setBgSelected(val)}
+                            data={bgdata}
+                            save="value"
+                            maxHeight={100}
+                            boxStyles={styles.bgBox}
+                            inputStyles={{ paddingHorizontal: 0 }}
+                            dropdownStyles={styles.bgDropdown}
+                        />
+                    </View>
+                </View>
+
+                {/* <View style={styles.nameSearchContainer}>
                 <Text style={styles.nameHeader}>Name*:</Text>
                 <View style={styles.nameSearchWrapper}>
                     <TextInput
@@ -178,25 +185,26 @@ export default Casualties = ({ navigation }) => {
                 </View>
             </View> */}
 
-            <View style={styles.nextContainer}>
-                <TouchableOpacity
-                    style={[styles.nextBtn, {
-                        backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
-                        borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1
-                    }]} 
+                <View style={styles.nextContainer}>
+                    <TouchableOpacity
+                        style={[styles.nextBtn, {
+                            backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
+                            borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1
+                        }]}
 
-                    onPress={() => navigation.navigate("Casualties2", {
-                        synopsis: synopsisselected,
-                        selectedId: selectedId,
-                        name: name,
-                        age: ageselected,
-                        bloodGroup: bgselected
-                    })} 
+                        onPress={() => navigation.navigate("Casualties2", {
+                            synopsis: synopsisselected,
+                            selectedId: selectedId,
+                            name: name,
+                            gender: selectedLabel,
+                            age: ageselected,
+                            bloodGroup: bgselected
+                        })}
 
-                    disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
-                    <Text style={styles.nextBtnText}>Next</Text>
-                </TouchableOpacity>
-            </View>
+                        disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
+                        <Text style={styles.nextBtnText}>Next</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
         </View>
     )
