@@ -15,6 +15,7 @@ import Register from './components/Register';
 import Discarded from './components/Discarded';
 import Profile1 from './components/Profile1';
 import { AuthProvider } from './contextApi/AuthContext';
+import Navbar from './components/Navbar';
 
 const Stack = createNativeStackNavigator();
 
@@ -75,6 +76,13 @@ export default function App() {
                     <Stack.Screen
                         name="Profile1"
                         component={Profile1}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Navbar"
+                        component={Navbar}
                         options={{
                             headerShown: false
                         }}

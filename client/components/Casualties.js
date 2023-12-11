@@ -14,6 +14,26 @@ Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Casualties = ({ navigation }) => {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Profile', value: 'profile' },
+        { label: 'Settings', value: 'settings' },
+        { label: 'Logout', value: 'logout', },
+    ]);
+
+    const handleDropdownChange = (item) => {
+        // Handle actions based on selected dropdown item
+        // console.log('Selected:', item);
+
+        if (item === 'profile') {
+            navigation.navigate("Profile1");
+        }
+    
+        // Close the dropdown after selection
+        setOpen(false);
+    };
+
     const radioButtons = useMemo(() => ([
         {
             id: '1', // acts as primary key, should be unique and non-empty string
@@ -69,12 +89,7 @@ export default Casualties = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerWrapper}>
-                <Image
-                    source={require('../assets/images/Sam.jpg')}
-                    style={styles.profileImage}
-                />
-            </View>
+            <Navbar handleDropdownChange= {handleDropdownChange}/>
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.titleText}>Patient Details</Text>

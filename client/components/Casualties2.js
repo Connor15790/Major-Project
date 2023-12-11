@@ -17,6 +17,26 @@ MaterialCommunityIcons.loadFont();
 export default Casualties2 = ({ route, navigation, props }) => {
     const { synopsis, selectedId, name, bloodGroup, age } = route.params;
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Profile', value: 'profile' },
+        { label: 'Settings', value: 'settings' },
+        { label: 'Logout', value: 'logout', },
+    ]);
+
+    const handleDropdownChange = (item) => {
+        // Handle actions based on selected dropdown item
+        // console.log('Selected:', item);
+
+        if (item === 'profile') {
+            navigation.navigate("Profile1");
+        }
+    
+        // Close the dropdown after selection
+        setOpen(false);
+    };
+
     const [timeselected, setTimeSelected] = useState("");
     // const [siteselected, setSiteSelected] = useState("");
     const [symptoms, setSymptoms] = useState("");
@@ -81,6 +101,8 @@ export default Casualties2 = ({ route, navigation, props }) => {
     return (
 
         <View style={styles.container}>
+            <Navbar handleDropdownChange= {handleDropdownChange}/>
+
             <View style={styles.titleWrapper}>
                 <Text style={styles.titleText}>{synopsis}</Text>
             </View>

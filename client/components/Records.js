@@ -15,7 +15,27 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-export default Records = () => {
+export default Records = ({ navigation }) => {
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        { label: 'Profile', value: 'profile' },
+        { label: 'Settings', value: 'settings' },
+        { label: 'Logout', value: 'logout', },
+    ]);
+
+    const handleDropdownChange = (item) => {
+        // Handle actions based on selected dropdown item
+        // console.log('Selected:', item);
+
+        if (item === 'profile') {
+            navigation.navigate("Profile1");
+        }
+    
+        // Close the dropdown after selection
+        setOpen(false);
+    };
+
     const [name, setName] = useState("");
     const [checkedItems, setCheckedItems] = useState(false);
     const [patientModalVisible, setPatientModalVisible] = useState(false);
@@ -110,12 +130,7 @@ export default Records = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerWrapper}>
-                <Image
-                    source={require('../assets/images/Sam.jpg')}
-                    style={styles.profileImage}
-                />
-            </View>
+            <Navbar handleDropdownChange= {handleDropdownChange}/>
 
             <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>
