@@ -30,15 +30,11 @@ const styles = StyleSheet.create({
         // flex: 1
     },
     infoIcon: {
-        alignItems: "flex-start"
+        // alignItems: "flex-start"
     },
     aboutText: {
         fontSize: 18,
         paddingLeft: 10,
-        paddingRight: 250
-    },
-    rightIcon: {
-
     },
 })
 
