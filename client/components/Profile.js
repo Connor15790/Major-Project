@@ -6,21 +6,6 @@ import styles from './styles/profile.style';
 
 SplashScreen.preventAutoHideAsync();
 
-const DATA = [
-    {
-        id: '01',
-        title: 'First Item',
-    },
-    {
-        id: '02',
-        title: 'Second Item',
-    },
-    {
-        id: '03',
-        title: 'Third Item',
-    },
-];
-
 export default Profile = () => {
     return (
         <View style={styles.container}>

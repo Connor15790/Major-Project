@@ -9,6 +9,7 @@ import styles from './styles/records.style';
 import CheckBox from 'react-native-check-box';
 import { format } from 'date-fns';
 import { apiPost, apiGet } from './common/axios';
+import Navbar from './Navbar';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -110,12 +111,7 @@ export default Records = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerWrapper}>
-                <Image
-                    source={require('../assets/images/Sam.jpg')}
-                    style={styles.profileImage}
-                />
-            </View>
+            <Navbar/>
 
             <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>

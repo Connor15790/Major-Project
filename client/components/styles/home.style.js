@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         paddingHorizontal: 20,
-        paddingTop: 50,
+        paddingTop: 0,
         alignItems: "center"
     },
     appTitle: {

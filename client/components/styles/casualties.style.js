@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: 20,
-        marginTop: 40
+        marginTop: 0
     },
     titleText: {
         color: "#51B209",

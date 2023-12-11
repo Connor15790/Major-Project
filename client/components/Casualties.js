@@ -8,6 +8,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import Navbar from './Navbar';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -69,12 +70,7 @@ export default Casualties = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.headerWrapper}>
-                <Image
-                    source={require('../assets/images/Sam.jpg')}
-                    style={styles.profileImage}
-                />
-            </View>
+            <Navbar/>
 
             <View style={styles.titleWrapper}>
                 <Text style={styles.titleText}>Patient Details</Text>
