@@ -5,11 +5,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     menuContainer: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
     },
     menuBtn: {
         marginRight: 10,
+        paddingVertical: 20
     },
     dropdown: {
         display: 'none',
@@ -17,12 +18,21 @@ const styles = StyleSheet.create({
     dropdownContainer: {
         height: 40,
         marginBottom: 20,
+        // width: "90%"
     },
-    dropdownItem: {
-        justifyContent: 'flex-start',
+    dropdownWrapper: {
+        width: 150,
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1,
+        alignContent: "center",
+        marginLeft: 212,
+        marginTop: 20
     },
     dropdownLabel: {
-        fontSize: 16,
+        fontSize: 10,
+        textAlign: "center",
+        padding: 20
     },
     headerWrapper: {
         flexDirection: 'row',

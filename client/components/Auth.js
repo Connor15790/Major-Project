@@ -8,6 +8,7 @@ import { useFonts } from 'expo-font';
 import { showToast } from './common/Toast';
 import * as SplashScreen from 'expo-splash-screen';
 import { apiPost, apiGet } from './common/axios';
+import { useAuth } from '../AuthContext';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -16,6 +17,8 @@ MaterialCommunityIcons.loadFont();
 export default Auth = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const { login } = useAuth();
 
     async function handleLogin() {
         console.log('Login button pressed')
