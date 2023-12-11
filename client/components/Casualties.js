@@ -8,6 +8,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import Navbar from './Navbar';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();

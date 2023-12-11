@@ -9,6 +9,7 @@ import styles from './styles/records.style';
 import CheckBox from 'react-native-check-box';
 import { format } from 'date-fns';
 import { apiPost, apiGet } from './common/axios';
+import Navbar from './Navbar';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -31,7 +32,7 @@ export default Records = ({ navigation }) => {
         if (item === 'profile') {
             navigation.navigate("Profile1");
         }
-    
+
         // Close the dropdown after selection
         setOpen(false);
     };
@@ -50,7 +51,7 @@ export default Records = ({ navigation }) => {
             const initialCheckedItems = response.data.reduce((acc, item) => {
                 acc[item._id] = item.checked;
                 return acc;
-              }, {});
+            }, {});
             setCardData(response.data)
             setOriginalCardData(response.data);
             setCheckedItems(initialCheckedItems);
@@ -78,14 +79,14 @@ export default Records = ({ navigation }) => {
 
 
     //function to toggle different checkboxes
-    const toggleCheckbox = async(itemId) => {
+    const toggleCheckbox = async (itemId) => {
         console.log("Checkbox toggled")
         setCheckedItems((prevCheckedItems) => ({
             ...prevCheckedItems,
             [itemId]: !prevCheckedItems[itemId],
         }));
         const toggleResponse = await apiPost('/casuality/togglePatientCheck', { patientId: itemId });
-        
+
     };
 
     // Function to filter cardData based on the search name
@@ -130,7 +131,7 @@ export default Records = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Navbar handleDropdownChange= {handleDropdownChange}/>
+            <Navbar handleDropdownChange={handleDropdownChange} />
 
             <View style={styles.searchContainer}>
                 <View style={styles.searchWrapper}>

@@ -7,6 +7,7 @@ import { useCallback, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import styles from './styles/home.style';
 import DropDownPicker from 'react-native-dropdown-picker';
+import Navbar from './Navbar';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
