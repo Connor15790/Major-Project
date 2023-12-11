@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        marginRight: 20
+        marginRight: 0
     },
     logoutBtn: {
         paddingVertical: 10,
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 30,
         borderRadius: 10,
-        marginLeft: 260,
+        marginLeft: 0,
         backgroundColor: "black"
     },
     logoutText: {
