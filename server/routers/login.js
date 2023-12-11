@@ -7,10 +7,10 @@ require('cookie-parser');
 
 
 router.route('/')
-    // .get((req, res) => {
-    //     console.log("Route hit")
-    //     res.send("hello")
-    // })
+    .get((req, res) => {
+        console.log("Route hit")
+        res.send("hello")
+    })
     .post(async (req, res) => {
         console.log(req.body, "hit route")
         var username = req.body.username;

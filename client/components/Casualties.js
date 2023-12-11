@@ -94,6 +94,7 @@ export default Casualties = ({ navigation }) => {
                     boxStyles={styles.synopsisBox}
                     inputStyles={{ paddingHorizontal: 0 }}
                     dropdownStyles={styles.synopsisDropdown}
+                    Image
                 />
             </View>
 

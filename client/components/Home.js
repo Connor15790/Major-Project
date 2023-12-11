@@ -20,16 +20,26 @@ export default Home = ({ navigation }) => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
-        { label: 'Logout', value: 'logout' },
         { label: 'Profile', value: 'profile' },
         { label: 'Settings', value: 'settings' },
     ]);
 
+    const handleOpenBottomSheet = () => {
+        setIsBottomSheetOpen(true);
+    };
+
+    const handleCloseBottomSheet = () => {
+        setIsBottomSheetOpen(false);
+    };
 
     const handleDropdownChange = (item) => {
         // Handle actions based on selected dropdown item
-        console.log('Selected:', item.value);
+        // console.log('Selected:', item);
 
+        if (item === 'profile') {
+            navigation.navigate('Profile');
+        } 
+    
         // Close the dropdown after selection
         setOpen(false);
     };
@@ -65,67 +75,25 @@ export default Home = ({ navigation }) => {
                         >
                             <Image source={require('../assets/icons/menu.png')} />
                         </TouchableOpacity>
-
-                        <DropDownPicker
-                            open={open}
-                            value={value}
-                            items={items}
-                            setOpen={setOpen}
-                            setValue={setValue}
-                            setItems={setItems}
-                            onChangeValue={handleDropdownChange}
-                            zIndex={1000} // Adjust zIndex as needed
-                            style={styles.dropdown}
-                            containerStyle={styles.dropdownContainer}
-                            itemStyle={styles.dropdownItem}
-                            labelStyle={styles.dropdownLabel}
-                        />
                     </View>
-                    {/* <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={isBottomSheetOpen}
-                        onRequestClose={handleCloseBottomSheet} >
-                        <View style={[styles.bottomSheet, { height: windowHeight * 0.6 }]}>
-                            <View style={{ flex: 0, width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <SubText text={'Preview'} family={'Poppins-med'} size={16} color={'#86827e'} />
-                                <TouchableOpacity onPress={handleCloseBottomSheet}>
-                                    <Image source={require('../assets/icons/x.png')} />
-                                </TouchableOpacity>
-                            </View>
-                            <View style={{ paddingVertical: 16 }}>
-                                <SubText text={'Unyime Emmanuel'} family={'PoppinsSBold'} color={'#292929'} size={18} />
-                                <SubText text={`I'm a Software Engineer and Technical Writer, I've had the TypeScript epiphany!. Oh, I play Chess too!`} family={'Poppins'} color={'#86827e'} size={14} />
+                </View>
 
-                                <View style={{ opacity: .2, height: 1, borderWidth: 1, borderColor: '#86827e', marginVertical: 16 }} />
-                                <View style={{ flex: 0, justifyContent: 'flex-start', flexDirection: 'row', alignItems: 'center' }}>
-                                    <SubText text={'24'} color={'#292929'} family={'PoppinsSBold'} size={24} />
-                                    <SubText text={' articles written'} color={'#86827e'} size={14} family={'Poppins-med'} />
-                                </View>
-
-                                <View style={{ paddingTop: 16 }}>
-                                    <SubText text={'Views (30 days)'} color={'#86827e'} size={12} family={'Poppins-med'} />
-                                    <SubText text={'4,904'} color={'#292929'} family={'PoppinsSBold'} size={18} />
-                                </View>
-
-                                <View style={{ paddingTop: 16 }}>
-                                    <SubText text={'Views (30 days)'} color={'#86827e'} size={12} family={'Poppins-med'} />
-                                    <HeadingText text={'4,904'} color={'#292929'} family={'PoppinsSBold'} size={18} />
-                                </View>
-
-                                <View style={{ paddingTop: 16 }}>
-                                    <SubText text={'Reads (30 days)'} color={'#86827e'} size={12} family={'Poppins-med'} />
-                                    <HeadingText text={'3038'} color={'#292929'} family={'PoppinsSBold'} size={18} />
-                                </View>
-
-                                <View style={{ paddingTop: 16, flex: 0, flexDirection: 'row' }}>
-                                    <Image source={require('../assets/icons/map-pin.png')} />
-                                    <View style={{ paddingLeft: 12 }} />
-                                    <SubText text={'Medium'} color={'#86827e'} size={14} family={'Poppins-med'} />
-                                </View>
-                            </View>
-                        </View>
-                    </Modal> */}
+                <View style={styles.dropdownWrapper}>
+                    <DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        onCh
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        onChangeValue={handleDropdownChange}
+                        zIndex={1000} // Adjust zIndex as needed
+                        style={styles.dropdown}
+                        labelStyle= {{color: "red"}}
+                        containerStyle={styles.dropdownContainer}
+                        selectedLabelStyle={{ textStyle: { color: 'white' } }}
+                    />
                 </View>
             </SafeAreaView>
 
