@@ -56,8 +56,15 @@ export default Home = ({ navigation, prop }) => {
         <View style={styles.container} onLayout={onLayoutRootView}>
             <Navbar handleDropdownChange= {handleDropdownChange}/>
 
+            <View style={styles.logoContainer}>
+                <Image
+                    source={require("../assets/images/mednav.png")}
+                    style={styles.logo}
+                />
+            </View>
+
             <View style={styles.titleWrapper}>
-                <Text style={styles.appTitle}>App Name</Text>
+                <Text style={styles.appTitle}>MedNav</Text>
             </View>
 
             <View style={styles.homeButtons}>

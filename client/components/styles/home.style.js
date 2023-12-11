@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     },
     menuBtn: {
         marginRight: 10,
-        paddingVertical: 20
+        paddingVertical: 0
     },
     dropdown: {
         display: 'none',
@@ -116,6 +116,14 @@ const styles = StyleSheet.create({
     emergencyTitle: {
         fontSize: 28,
         fontFamily: "Montserrat-Medium"
+    },
+    logoContainer: {
+        flex: 0,
+        alignItems: "center"
+    },
+    logo: {
+        width: 150,
+        height: 150
     },
 })
 
