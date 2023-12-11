@@ -24,10 +24,14 @@ export default Navbar = ({ navigation, handleDropdownChange }) => {
         <View>
             <SafeAreaView>
                 <View style={styles.headerWrapper}>
-                    <Image
+                    {/* <Image
                         source={require('../assets/images/Sam.jpg')}
                         style={styles.profileImage}
-                    />
+                    /> */}
+                    <Image
+                    source={require('../assets/images/doctor.jpg')}
+                    style={styles.profileImage}
+                />
                     <View style={styles.menuContainer}>
                         <TouchableOpacity
                             style={styles.menuBtn}

@@ -107,7 +107,7 @@ export default Records = ({ navigation }) => {
         setItemToDelete(itemId);
         setDeleteModalVisible(true);
     };
-
+  
     const confirmDelete = async () => {
         // console.log("Confirm btn pressed")
         try {
