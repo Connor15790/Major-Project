@@ -121,7 +121,8 @@ const styles = StyleSheet.create({
     patientSynopsis: {
         marginTop: 5,
         fontFamily: "Montserrat-SemiBold",
-        fontSize: 12
+        fontSize: 12,
+        color:'red'
     },
     dateText: {
         fontFamily: "Montserrat-SemiBold",

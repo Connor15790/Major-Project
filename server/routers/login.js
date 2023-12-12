@@ -27,7 +27,7 @@ router.route('/')
             const passMatch = await bcrypt.compare(password, userFound.password)
 
             if (passMatch) {
-                var accessToken = jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET);
+                // var accessToken = jwt.sign({ username: username }, process.env.ACCESS_TOKEN_SECRET);
 
                 const result = await user.findOneAndUpdate({ username }, {
                     $set: {
