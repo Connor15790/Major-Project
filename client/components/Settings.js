@@ -38,7 +38,7 @@ export default Settings = ({ navigation }) => {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate("About")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Help")}>
                 <View style={styles.helpContainer}>
                     <View style={{ alignItems: "flex-start", flex: 1, flexDirection: "row" }}>
                         <Image

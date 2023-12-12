@@ -19,6 +19,7 @@ import Navbar from './components/Navbar';
 import Settings from './components/Settings';
 import About from './components/About';
 import Changepass from './components/Changepass';
+import Help from './components/Help';
 
 const Stack = createNativeStackNavigator();
 
@@ -107,6 +108,13 @@ export default function App() {
                     <Stack.Screen
                         name="Changepass"
                         component={Changepass}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Help"
+                        component={Help}
                         options={{
                             headerShown: false
                         }}

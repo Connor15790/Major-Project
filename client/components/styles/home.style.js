@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#BBC7B8"
     },
     casualtyTitle: {
-        fontSize: 28,
+        fontSize: 20,
         fontFamily: "Montserrat-Medium"
     },
     recordsTitle: {
