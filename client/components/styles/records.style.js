@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 5,
         paddingVertical: 30,
-        paddingHorizontal: 20,
+        paddingHorizontal: 50,
         shadowColor: '#000',
         shadowOffset: {
             width: 0,
@@ -186,6 +186,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: "Montserrat-SemiBold",
         fontSize: 20,
+    },
+    modalText1: {
+        marginTop: 3,
+        fontFamily: "Montserrat-Medium" 
     },
     button1: {
         borderRadius: 10,

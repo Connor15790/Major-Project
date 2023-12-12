@@ -168,14 +168,14 @@ export default Records = ({ navigation }) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{selectedPatient?.patientName}</Text>
-                        <Text>Age: {selectedPatient?.age}</Text>
-                        <Text>Gender: {selectedPatient?.gender}</Text>
-                        <Text>Blood Group: {selectedPatient?.bloodGroup}</Text>
-                        <Text>Synopsis: {selectedPatient?.primarySynopsis}</Text>
-                        <Text>Status: {selectedPatient?.checked? "Checked":"Not checked"}</Text>
-                        <Text>Symtoms: {selectedPatient?.injuryDetails?.symptoms}</Text>
-                        <Text>Allergies: {selectedPatient?.injuryDetails?.allergies}</Text>
-                        <Text>Previous Medications: {selectedPatient?.injuryDetails?.previousMedications}</Text>
+                        <Text style={styles.modalText1}>Age: {selectedPatient?.age}</Text>
+                        <Text style={styles.modalText1}>Gender: {selectedPatient?.gender}</Text>
+                        <Text style={styles.modalText1}>Blood Group: {selectedPatient?.bloodGroup}</Text>
+                        <Text style={styles.modalText1}>Synopsis: {selectedPatient?.primarySynopsis}</Text>
+                        <Text style={styles.modalText1}>Status: {selectedPatient?.checked? "Checked":"Not checked"}</Text>
+                        <Text style={styles.modalText1}>Symtoms: {selectedPatient?.injuryDetails?.symptoms}</Text>
+                        <Text style={styles.modalText1}>Allergies: {selectedPatient?.injuryDetails?.allergies}</Text>
+                        <Text style={styles.modalText1}>Previous Medications: {selectedPatient?.injuryDetails?.previousMedications}</Text>
                         <View style={styles.closeBtn}>
                             <TouchableOpacity
                                 style={[styles.button0, styles.buttonClose0]}
