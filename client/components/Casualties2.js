@@ -32,6 +32,8 @@ export default Casualties2 = ({ route, navigation, props }) => {
 
         if (item === 'profile') {
             navigation.navigate("Profile1");
+        } else if (item === 'settings') {
+            navigation.navigate("Settings");
         }
 
         // Close the dropdown after selection
