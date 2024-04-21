@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useCallback, useState, useMemo } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView } from 'react-native';
+import { useCallback, useState, useMemo, useEffect } from 'react';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, Pressable } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './styles/casualties.style';
@@ -9,12 +9,19 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Navbar from './Navbar';
+import { MultipleSelectList } from 'react-native-dropdown-select-list'
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Casualties = ({ navigation }) => {
+    const [selected, setSelected] = React.useState([]);
+
+    useEffect(() => {
+        console.log(selected);
+    });
+
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
@@ -59,7 +66,7 @@ export default Casualties = ({ navigation }) => {
     const [selectedLabel, setSelectedLabel] = useState(null);
     const [ageselected, setAgeSelected] = useState("");
     const [bgselected, setBgSelected] = useState("");
-    const [synopsisselected, setSynopsisSelected] = useState("");
+    const [synopsisselected, setSynopsisSelected] = useState([]);
     const [name, setName] = useState("")
 
     const agedata = [
@@ -83,12 +90,33 @@ export default Casualties = ({ navigation }) => {
         { key: '8', value: 'AB-' },
     ]
 
-    const synopsisdata = [
-        { key: '1', value: 'Leg Fracture' },
-        { key: '2', value: 'Dog Bite' },
-        { key: '3', value: 'Snake Bite' },
-        { key: '3', value: 'Heart Attack' },
-        { key: '3', value: 'Stroke' },
+    const synopsisdata2 = [
+        { key: '1', value: 'itching' },
+        { key: '2', value: 'skin_rash' },
+        { key: '3', value: 'nodal_skin_eruptions' },
+        { key: '4', value: 'continuous_sneezing' },
+        { key: '5', value: 'shivering' },
+        { key: '6', value: 'chills' },
+        { key: '7', value: 'joint_pain' },
+        { key: '8', value: 'stomach_pain' },
+        { key: '9', value: 'acidity' },
+        { key: '10', value: 'ulcers_on_tongue' },
+        { key: '11', value: 'muscle_wasting' },
+        { key: '12', value: 'vomiting' },
+        { key: '13', value: 'burning_micturition' },
+        { key: '14', value: 'spotting_urination' },
+        { key: '15', value: 'dischromic_patches' },
+        { key: '16', value: 'watering_from_eyes' },
+        { key: '17', value: 'cough' },
+        { key: '18', value: 'chest_pain' },
+        { key: '19', value: 'yellowish_skin' },
+        { key: '20', value: 'nausea' },
+        { key: '21', value: 'loss_of_appetite' },
+        { key: '22', value: 'abdominal_pain' },
+        { key: '23', value: 'yellowing_of_eyes' },
+        { key: '24', value: 'indigestion' },
+        { key: '25', value: 'passage_of_gases' },
+        { key: '26', value: 'internal_itching' },
     ]
 
     return (
@@ -105,15 +133,17 @@ export default Casualties = ({ navigation }) => {
                 </View>
 
                 <View style={styles.psContainer}>
-                    <SelectList
-                        setSelected={(val) => setSynopsisSelected(val)}
-                        data={synopsisdata}
-                        save="value"
-                        maxHeight={100}
-                        boxStyles={styles.synopsisBox}
-                        inputStyles={{ paddingHorizontal: 0 }}
-                        dropdownStyles={styles.synopsisDropdown}
-                    />
+                    <View style={styles.listContainer}>
+                        <MultipleSelectList
+                            setSelected={(val) => setSelected(val)}
+                            data={synopsisdata2}
+                            save="value"
+                            boxStyles={styles.synopsisBox}
+                            dropdownStyles={styles.synopsisDropdown}
+                            onSelect={() => alert(selected)}
+                            label="Categories"
+                        />
+                    </View>
                 </View>
 
                 <View style={styles.nameSearchContainer}>

@@ -132,15 +132,43 @@ const styles = StyleSheet.create({
         paddingTop: 3
     },
     psContainer: {
+        marginTop: 10,
+        paddingHorizontal: 20,
+        width: 1000
+    },
+    listContainer: {
+        flexDirection:"row",
+    },
+    psContainer2: {
         justifyContent: "left",
         marginTop: 10,
         paddingHorizontal: 20,
+        flexDirection: "row"
+    },
+    xbutton: {
+        flex: 1,
+        fontSize: 16,
+        textAlign: "center",
+        alignContent: "center",
+        paddingTop: 3,
+        backgroundColor: "#F12E2E",
+        borderRadius: 100,
+        width: 30,
+        marginHorizontal: 10,
+        marginVertical: 8,
+        fontWeight: "bold",
+        color: "white"
     },
     synopsisBox: {
         backgroundColor: "white",
+        width: 350
+    },
+    synopsisBox2: {
+        backgroundColor: "white",
+        width: 300
     },
     synopsisDropdown: {
-        height: 200
+        width: 350
     },
     nextContainer: {
         marginTop: 40,
@@ -162,6 +190,34 @@ const styles = StyleSheet.create({
         fontFamily: "Montserrat-SemiBold",
         color: "white"
     },
+    addsymptomContainer: {
+        // justifyContent: "left",
+        // alignItems: "left",
+        // marginTop: 10,
+        // height: 40,
+        // // paddingHorizontal: 20,
+        // flexDirection: "row"
+        top: 10
+    },
+    addsymptom: {
+        fontSize: 16,
+        fontWeight: "bold",
+        backgroundColor: "white",
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        width: 125,
+        borderRadius: 10
+    },
+    removesymptom: {
+        fontSize: 16,
+        fontWeight: "bold",
+        backgroundColor: "red",
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        width: 95,
+        borderRadius: 10,
+        marginLeft: 10
+    }
 })
 
 export default styles;

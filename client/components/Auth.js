@@ -14,7 +14,6 @@ SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
-
 export default Auth = ({ navigation }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
