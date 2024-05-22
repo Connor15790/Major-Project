@@ -20,6 +20,7 @@ import Settings from './components/Settings';
 import About from './components/About';
 import Changepass from './components/Changepass';
 import Help from './components/Help';
+import Emergencies from './components/Emergencies';
 
 const Stack = createNativeStackNavigator();
 
@@ -115,6 +116,13 @@ export default function App() {
                     <Stack.Screen
                         name="Help"
                         component={Help}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Emergencies"
+                        component={Emergencies}
                         options={{
                             headerShown: false
                         }}

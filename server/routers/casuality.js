@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const casuality = require('../models/Casualities')
 const InjuryDetails = require('../models/InjuryDetails')
+const { PythonShell } = require("python-shell")
 
 router.route('/patientDetails')
     .post(async (req, res) => {
@@ -71,7 +72,7 @@ router.route('/togglePatientCheck')
     .post(async (req, res) => {
         try {
             const { patientId } = req.body;
-            console.log(patientId)
+            // console.log(patientId)
             // Assuming patientId is provided in the request body
             if (!patientId) {
                 return res.json({ status: 401, message: 'Patient ID is required' });
@@ -128,5 +129,27 @@ router.route('/deletePatient')
             res.json({ status: 500, message: 'Internal server error' });
         }
     })
+
+router.route('/predict')
+    .get(async (req, res) => {
+
+        const inputString = "continuous_sneezing shivering chills";
+
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            args: [inputString]
+        };
+
+
+        PythonShell.run('main.py', options).then(result => {
+            console.log(result)
+            res.send(result)
+
+        }).catch(err => {
+            console.log("Error occured")
+            res.send(err);
+        })
+    });
 
 module.exports = router

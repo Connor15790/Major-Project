@@ -140,7 +140,7 @@ export default Casualties = ({ navigation }) => {
                             save="value"
                             boxStyles={styles.synopsisBox}
                             dropdownStyles={styles.synopsisDropdown}
-                            onSelect={() => alert(selected)}
+                            // onSelect={() => alert(selected)}
                             label="Categories"
                         />
                     </View>

@@ -17,8 +17,6 @@ Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Home = ({ navigation, prop }) => {
-    const windowHeight = Dimensions.get('window').height;
-
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
@@ -92,7 +90,7 @@ export default Home = ({ navigation, prop }) => {
                     <Text style={styles.recordsTitle}>Records</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.emergencyHeader}>
-                    <Text style={styles.emergencyTitle}>Emergencies</Text>
+                    <Text style={styles.emergencyTitle} onPress={() => navigation.navigate("Emergencies")}>Emergencies</Text>
                 </TouchableOpacity>
             </View>
         </View>
