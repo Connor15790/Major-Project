@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         paddingHorizontal: 20,
-        marginTop: 0
+        marginTop: 0,
     },
     titleText: {
         color: "#51B209",
@@ -196,6 +196,27 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
+    },
+    synopsisContainer: {
+        justifyContent: "left",
+        flexDirection: "column",
+        marginTop: 10,
+        paddingHorizontal: 20,
+    },
+    synopsisContainerHeader: {
+        justifyContent: "left",
+        flexDirection: "row",
+        marginTop: 30,
+        paddingHorizontal: 20,
+    },
+    synopsisHeader: {
+        fontSize: 18,
+        fontWeight: "bold",
+        paddingTop: 3
+    },
+    synopsisText: {
+        fontSize: 16,
+        paddingTop: 3
     },
 })
 

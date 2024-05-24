@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useCallback, useState, useMemo } from 'react';
-import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform, Modal, Pressable } from 'react-native';
+import { useCallback, useState, useMemo, useEffect } from 'react';
+import { Text, View, SafeAreaView, StyleSheet, Image, FlatList, TouchableOpacity, TextInput, ScrollView, KeyboardAvoidingView, Platform, Modal, Pressable, ActivityIndicator } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import { SelectList } from 'react-native-dropdown-select-list'
 import styles from './styles/casualties2.style';
@@ -10,14 +10,14 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { apiPost, apiGet } from './common/axios';
 import Navbar from './Navbar';
+import { fetchDiseaseData } from './common/apiservice';
+import { fetchMedsData } from './common/apiservice';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
 
 export default Casualties2 = ({ route, navigation, props }) => {
-    const { synopsis, selectedId, name, gender, bloodGroup, age } = route.params;
-
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([
@@ -25,6 +25,60 @@ export default Casualties2 = ({ route, navigation, props }) => {
         { label: 'Settings', value: 'settings' },
         { label: 'Logout', value: 'logout', },
     ]);
+
+    const [timeselected, setTimeSelected] = useState("");
+    // const [siteselected, setSiteSelected] = useState("");
+    const [symptoms, setSymptoms] = useState("");
+    const [allergies, setAllergies] = useState("");
+    const [prevmed, setPrevmed] = useState("");
+    const [modalVisible, setModalVisible] = useState(false);
+        
+    const [ddata, setdData] = useState(null);
+    const [dloading, setdLoading] = useState(true);
+    const [derror, setdError] = useState(null);
+
+    const [mdata, setmData] = useState(null);
+    const [mloading, setmLoading] = useState(true);
+    const [merror, setmError] = useState(null);
+    
+    useEffect(() => {
+        const getData1 = async () => {
+            try {
+                const result = await fetchDiseaseData();
+                setdData(result);
+            } catch (error) {
+                setdError(error);
+            } finally {
+                setdLoading(false);
+            }
+        };
+
+        const getData2 = async () => {
+            try {
+                const result = await fetchMedsData();
+                setmData(result);
+            } catch (error) {
+                setmError(error);
+            } finally {
+                setmLoading(false);
+            }
+        };
+        
+        console.log(dloading)
+        
+        getData1();
+        getData2();
+    }, []);
+    
+    if (dloading && mloading) {
+        return <ActivityIndicator size="xlarge" color="#0000ff" style={{alignItems: "center", justifyContent: "center", flex: 1}} />;
+    }
+    
+    if (derror && merror) {
+        return <Text style={styles.errorText}>Error: {derror.message}</Text>;
+    }
+    
+    const { synopsis, selectedId, name, gender, bloodGroup, age } = route.params;
 
     const handleDropdownChange = (item) => {
         // Handle actions based on selected dropdown item
@@ -39,31 +93,6 @@ export default Casualties2 = ({ route, navigation, props }) => {
         // Close the dropdown after selection
         setOpen(false);
     };
-
-    const [timeselected, setTimeSelected] = useState("");
-    // const [siteselected, setSiteSelected] = useState("");
-    const [symptoms, setSymptoms] = useState("");
-    const [allergies, setAllergies] = useState("");
-    const [prevmed, setPrevmed] = useState("");
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const timedata = [
-        { key: '1', value: '10M-30M' },
-        { key: '2', value: '30M-1H' },
-        { key: '3', value: '1H-2H' },
-        { key: '4', value: '2H-4H' },
-        { key: '5', value: '4H-6H' },
-        { key: '6', value: 'More than 6H' },
-    ]
-
-    const sitedata = [
-        { key: '1', value: '' },
-        { key: '2', value: '' },
-        { key: '3', value: '' },
-        { key: '4', value: '' },
-        { key: '5', value: '' },
-        { key: '6', value: '' },
-    ]
 
     const submitForm = async () => {
         try {
@@ -105,91 +134,28 @@ export default Casualties2 = ({ route, navigation, props }) => {
         <View style={styles.container}>
             <Navbar handleDropdownChange={handleDropdownChange} />
 
-            <View style={styles.titleWrapper}>
-                <Text style={styles.titleText}>{synopsis}</Text>
-            </View>
             <ScrollView>
-                <View style={styles.timeWrapper}>
-                    <Text style={styles.timeText}>Time of accident:</Text>
+                <View style={styles.titleWrapper}>
+                    <Text style={styles.titleText}>Synopsis</Text>
                 </View>
 
-                <View style={styles.timeddWrapper}>
-                    <SelectList
-                        setSelected={(val) => setTimeSelected(val)}
-                        data={timedata}
-                        save="value"
-                        maxHeight={100}
-                        boxStyles={styles.timeBox}
-                        inputStyles={{ paddingHorizontal: 0 }}
-                        dropdownStyles={styles.timeDropdown}
-                    />
+                <View style={styles.synopsisContainerHeader}>
+                    <Text style={styles.synopsisHeader}>Probable Disease:</Text>
                 </View>
 
-                {/* <View style={styles.siteWrapper}>
-                    <Text style={styles.siteText}>Site of injury:</Text>
+                <View style={styles.synopsisContainer}>
+                    <Text style={styles.synopsisText}>The patient has a probable case of - </Text>
+                    <Text style={styles.synopsisText}>{JSON.stringify(ddata)}</Text>
                 </View>
 
-                <View style={styles.siteddWrapper}>
-                    <SelectList
-                        setSelected={(val) => setSiteSelected(val)}
-                        data={sitedata}
-                        save="value"
-                        maxHeight={100}
-                        boxStyles={styles.siteBox}
-                        inputStyles={{ paddingHorizontal: 0 }}
-                        dropdownStyles={styles.siteDropdown}
-                    />
-                </View> */}
-
-                <View style={styles.symptomsTitleWrapper}>
-                    <Text style={styles.symptomsTitleText}>Symptoms:</Text>
+                <View style={styles.synopsisContainerHeader}>
+                    <Text style={styles.synopsisHeader}>Suggested Medications:</Text>
                 </View>
 
-                <KeyboardAvoidingView enabled={true} behavior={Platform.OS === "ios" ? "padding" : "height"}>
-                    <View style={styles.symptomsWrapper}>
-                        <TextInput
-                            style={styles.symptomsInput}
-                            value={symptoms}
-                            onChangeText={(inputText) => setSymptoms(inputText)}
-                            multiline={true}
-                            numberOfLines={4}
-                        />
-                    </View>
-                </KeyboardAvoidingView>
-
-                <View style={styles.prevmedTitleWrapper}>
-                    <Text style={styles.prevmedTitleText}>Previous medications:</Text>
+                <View style={styles.synopsisContainer}>
+                    <Text style={styles.synopsisText}>Suggested medications for the patient - </Text>
+                    <Text style={styles.synopsisText}>{JSON.stringify(mdata)}</Text>
                 </View>
-
-                <KeyboardAvoidingView enabled={true}>
-                    <View style={styles.prevmedWrapper}>
-                        <TextInput
-                            style={styles.prevmedInput}
-                            value={prevmed}
-                            onChangeText={(inputText) => setPrevmed(inputText)}
-                            multiline={true}
-                            numberOfLines={4}
-                        />
-                    </View>
-                </KeyboardAvoidingView>
-
-                <View style={styles.allergiesTitleWrapper}>
-                    <Text style={styles.allergiesTitleText}>Allergies:</Text>
-                </View>
-
-                <KeyboardAvoidingView enabled={true}>
-                    <View style={styles.allergiesWrapper}>
-                        <TextInput
-                            style={styles.allergiesInput}
-                            value={allergies}
-                            onChangeText={(inputText) => setAllergies(inputText)}
-                            multiline={true}
-                            numberOfLines={4}
-                        />
-                    </View>
-                </KeyboardAvoidingView>
-
-
 
                 <View style={styles.centeredView}>
                     <Modal

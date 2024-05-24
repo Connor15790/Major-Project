@@ -58,7 +58,7 @@ export default Records = ({ navigation }) => {
             setCardData(response.data)
             setOriginalCardData(response.data);
             setCheckedItems(initialCheckedItems);
-            console.log(response.data)
+            // console.log(response.data)
         }
         fetchPatientData()
     }, [])

@@ -130,7 +130,7 @@ router.route('/deletePatient')
         }
     })
 
-router.route('/predict')
+router.route('/predictdisease')
     .get(async (req, res) => {
 
         const inputString = "continuous_sneezing shivering chills";
@@ -143,6 +143,28 @@ router.route('/predict')
 
 
         PythonShell.run('main.py', options).then(result => {
+            console.log(result)
+            res.send(result)
+
+        }).catch(err => {
+            console.log("Error occured")
+            res.send(err);
+        })
+    });
+
+router.route('/predictmeds')
+    .get(async (req, res) => {
+
+        const inputString = "continuous_sneezing shivering chills";
+
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            args: [inputString]
+        };
+
+
+        PythonShell.run('main2.py', options).then(result => {
             console.log(result)
             res.send(result)
 

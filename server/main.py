@@ -25,7 +25,7 @@ filename = r'C:\Users\Conno\OneDrive\Desktop\VS Code Projects\Major Project ML 2
 my_data = pd.read_csv(filename)
 
 # Print the first 5 rows of the DataFrame
-print(my_data.head())
+# print(my_data.head())
 
 symptomsList = []
 
@@ -53,7 +53,7 @@ X = my_data[["itching", "skin_rash", "nodal_skin_eruptions", "continuous_sneezin
 y = my_data["prognosis"]
 
 X_trainset, X_testset, y_trainset, y_testset = train_test_split(X, y, test_size=0.3, random_state=3)
-print('Shape of X training set {}'.format(X_trainset.shape),'&',' Size of y training set {}'.format(y_trainset.shape))
+# print('Shape of X training set {}'.format(X_trainset.shape),'&',' Size of y training set {}'.format(y_trainset.shape))
 
 drugTree= DecisionTreeClassifier (criterion="entropy", max_depth=9)
 
@@ -61,10 +61,10 @@ drugTree.fit(X_trainset,y_trainset)
 
 predTree=drugTree.predict(X_testset)
 
-print(predTree[0:10])
-print(y_testset[0:10])
+# print(predTree[0:10])
+# print(y_testset[0:10])
 
-print("DecisionTrees's Accuracy: ", metrics.accuracy_score(y_testset, predTree)*100,"%")
+# print("DecisionTrees's Accuracy: ", metrics.accuracy_score(y_testset, predTree)*100,"%")
 
 itching, skin_rash, nodal_skin_eruptions, continuous_sneezing, shivering, chills, joint_pain, stomach_pain, acidity, ulcers_on_tongue, muscle_wasting, vomiting, burning_micturition, spotting_urination, dischromic_patches, watering_from_eyes, cough, chest_pain, yellowish_skin, nausea, loss_of_appetite, abdominal_pain, yellowing_of_eyes, indigestion, passage_of_gases, internal_itching = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
@@ -111,5 +111,5 @@ new_instance = pd.DataFrame([newData])
 
 predicted_drug = drugTree.predict(new_instance)
 
-print("Predicted Disease: ", predicted_drug[0])
-print(ticker)
+print(predicted_drug[0])
+# print(ticker)
