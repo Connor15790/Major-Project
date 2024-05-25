@@ -19,6 +19,7 @@ MaterialCommunityIcons.loadFont();
 
 export default Casualties = ({ navigation }) => {
     const [selected, setSelected] = React.useState([]);
+    const [disease, setDisease] = React.useState([]);
 
     // useEffect(() => {
     //     // console.log(selected);
@@ -26,7 +27,8 @@ export default Casualties = ({ navigation }) => {
 
     const sendDiseaseData = async () => {
         console.log(selected)
-        apiPost('/casuality/predictdisease', selected);
+        const disease = await apiPost('/casuality/predictdisease', selected);
+        setDisease(disease);
     };
 
     // const sendMedsData = () => {
@@ -48,7 +50,8 @@ export default Casualties = ({ navigation }) => {
             name: name,
             gender: selectedLabel,
             age: ageselected,
-            bloodGroup: bgselected
+            bloodGroup: bgselected,
+            disease: disease
         })
     }
 
