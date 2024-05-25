@@ -136,12 +136,12 @@ router.route('/predictdisease')
     .post(async (req, res) => {
 
         const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
-        console.log(req.body)
+        console.log(req.body.join(" "))
 
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            args: inputString
+            args: req.body.join(" ")
         };
 
         PythonShell.run('main.py', options).then(result => {
@@ -154,26 +154,26 @@ router.route('/predictdisease')
         })
     });
 
-// router.route('/predictmeds')
-//     .get(async (req, res) => {
+router.route('/predictmeds')
+    .get(async (req, res) => {
 
-//         const inputString = [];
+        const inputString = [];
 
-//         let options = {
-//             mode: 'text',
-//             pythonOptions: ['-u'], // get print results in real-time
-//             args: [inputString.join(" ")]
-//         };
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            args: [inputString.join(" ")]
+        };
 
 
-//         PythonShell.run('main2.py', options).then(result => {
-//             // console.log(result)
-//             res.send(result)
+        PythonShell.run('main2.py', options).then(result => {
+            // console.log(result)
+            res.send(result)
 
-//         }).catch(err => {
-//             console.log("Error occured")
-//             res.send(err);
-//         })
-//     });
+        }).catch(err => {
+            console.log("Error occured")
+            res.send(err);
+        })
+    });
 
 module.exports = router

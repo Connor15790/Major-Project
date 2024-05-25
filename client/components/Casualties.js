@@ -26,8 +26,9 @@ export default Casualties = ({ navigation }) => {
     // });
 
     const sendDiseaseData = async () => {
-        console.log(selected)
+        console.log(selected.join(" "))
         const disease = await apiPost('/casuality/predictdisease', selected);
+        console.log(disease)
         setDisease(disease);
     };
 

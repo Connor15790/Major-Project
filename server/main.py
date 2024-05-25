@@ -67,7 +67,7 @@ predTree=drugTree.predict(X_testset)
 itching, skin_rash, nodal_skin_eruptions, continuous_sneezing, shivering, chills, joint_pain, stomach_pain, acidity, ulcers_on_tongue, muscle_wasting, vomiting, burning_micturition, spotting_urination, dischromic_patches, watering_from_eyes, cough, chest_pain, yellowish_skin, nausea, loss_of_appetite, abdominal_pain, yellowing_of_eyes, indigestion, passage_of_gases, internal_itching = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 symptomsInputList = [item for item in ticker.lower().split()]
-# symptomsInputList = ticker
+# symptomsInputList = [ticker]
 
 for i in symptomsInputList:
     if i in symptomsList:

@@ -41,44 +41,44 @@ export default Casualties2 = ({ route, navigation, props }) => {
     const [mloading, setmLoading] = useState(true);
     const [merror, setmError] = useState(null);
     
-    useEffect(() => {
-        const getData1 = async () => {
-            try {
-                const result = await fetchDiseaseData();
-                setdData(result);
-            } catch (error) {
-                setdError(error);
-            } finally {
-                setdLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const getData1 = async () => {
+    //         try {
+    //             const result = await fetchDiseaseData();
+    //             setdData(result);
+    //         } catch (error) {
+    //             setdError(error);
+    //         } finally {
+    //             setdLoading(false);
+    //         }
+    //     };
 
-        // const getData2 = async () => {
-        //     try {
-        //         const result = await fetchMedsData();
-        //         setmData(result);
-        //     } catch (error) {
-        //         setmError(error);
-        //     } finally {
-        //         setmLoading(false);
-        //     }
-        // };
+    //     // const getData2 = async () => {
+    //     //     try {
+    //     //         const result = await fetchMedsData();
+    //     //         setmData(result);
+    //     //     } catch (error) {
+    //     //         setmError(error);
+    //     //     } finally {
+    //     //         setmLoading(false);
+    //     //     }
+    //     // };
         
-        // console.log(dloading)
+    //     // console.log(dloading)
         
-        getData1();
-        // getData2();
-    }, []);
+    //     getData1();
+    //     // getData2();
+    // }, []);
     
-    if (dloading && mloading) {
-        return <ActivityIndicator size="xlarge" color="#0000ff" style={{alignItems: "center", justifyContent: "center", flex: 1}} />;
-    }
+    // if (dloading && mloading) {
+    //     return <ActivityIndicator size="xlarge" color="#0000ff" style={{alignItems: "center", justifyContent: "center", flex: 1}} />;
+    // }
     
-    if (derror && merror) {
-        return <Text style={styles.errorText}>Error: {derror.message}</Text>;
-    }
+    // if (derror && merror) {
+    //     return <Text style={styles.errorText}>Error: {derror.message}</Text>;
+    // }
     
-    const { synopsis, selectedId, name, gender, bloodGroup, age } = route.params;
+    const { synopsis, selectedId, name, gender, bloodGroup, age, disease } = route.params;
 
     const handleDropdownChange = (item) => {
         // Handle actions based on selected dropdown item
@@ -145,7 +145,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
 
                 <View style={styles.synopsisContainer}>
                     <Text style={styles.synopsisText}>The patient has a probable case of - </Text>
-                    <Text style={styles.synopsisText}>{JSON.stringify(ddata)}</Text>
+                    <Text style={styles.synopsisText}>{disease}</Text>
                 </View>
 
                 <View style={styles.synopsisContainerHeader}>
