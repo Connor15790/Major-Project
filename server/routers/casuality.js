@@ -132,6 +132,7 @@ router.route('/deletePatient')
     })
 
 router.route('/predictdisease')
+    
     .post(async (req, res) => {
 
         const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
