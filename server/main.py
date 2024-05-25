@@ -14,9 +14,7 @@ def download(url, filename):
     response = pd.read_csv(url)
     response.to_csv(filename, index=False)
 
-ticker = sys.argv[0]
-# ticker = "MSFT"
-ticker_symbol = f"{ticker}"
+ticker = sys.argv[1]
 
 # Assuming the CSV file is at the specified path
 filename = r'C:\Users\Conno\OneDrive\Desktop\VS Code Projects\Major Project ML 2\Training.csv'
@@ -34,7 +32,7 @@ symptomsList = []
 # print("rows:", len(data))
 # print("columns:", len(data[0]))
 
-with open('Training.csv', newline='') as csvfile:
+with open('C:\\Users\\Conno\\OneDrive\\Desktop\\VS Code Projects\\Final Project\\Major-Project\\server\\Training.csv', newline='') as csvfile:
     reader = csv.reader(csvfile)
     
     # Read the first row
@@ -68,8 +66,8 @@ predTree=drugTree.predict(X_testset)
 
 itching, skin_rash, nodal_skin_eruptions, continuous_sneezing, shivering, chills, joint_pain, stomach_pain, acidity, ulcers_on_tongue, muscle_wasting, vomiting, burning_micturition, spotting_urination, dischromic_patches, watering_from_eyes, cough, chest_pain, yellowish_skin, nausea, loss_of_appetite, abdominal_pain, yellowing_of_eyes, indigestion, passage_of_gases, internal_itching = 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
-# symptomsInputList = [item for item in input("Enter the list items : ").lower().split()]
-symptomsInputList = [ticker]
+symptomsInputList = [item for item in ticker.lower().split()]
+# symptomsInputList = ticker
 
 for i in symptomsInputList:
     if i in symptomsList:
@@ -111,5 +109,9 @@ new_instance = pd.DataFrame([newData])
 
 predicted_drug = drugTree.predict(new_instance)
 
-print(predicted_drug[0])
+output = predicted_drug[0]
+
+print(output)
+
+sys.stdout.flush()
 # print(ticker)

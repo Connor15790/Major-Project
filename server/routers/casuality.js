@@ -2,6 +2,7 @@ const router = require('express').Router();
 const casuality = require('../models/Casualities')
 const InjuryDetails = require('../models/InjuryDetails')
 const { PythonShell } = require("python-shell")
+const spawner = require("child_process").spawn;
 
 router.route('/patientDetails')
     .post(async (req, res) => {
@@ -131,47 +132,47 @@ router.route('/deletePatient')
     })
 
 router.route('/predictdisease')
-    .get(async (req, res) => {
+    .post(async (req, res) => {
 
-        const inputString = "continuous_sneezing shivering chills";
+        const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
+        console.log(req.body)
 
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            args: [inputString]
+            args: inputString
         };
-
 
         PythonShell.run('main.py', options).then(result => {
-            console.log(result)
+            // console.log(result)
             res.send(result)
 
         }).catch(err => {
-            console.log("Error occured")
+            // console.log("Error occured")
             res.send(err);
         })
     });
 
-router.route('/predictmeds')
-    .get(async (req, res) => {
+// router.route('/predictmeds')
+//     .get(async (req, res) => {
 
-        const inputString = "continuous_sneezing shivering chills";
+//         const inputString = [];
 
-        let options = {
-            mode: 'text',
-            pythonOptions: ['-u'], // get print results in real-time
-            args: [inputString]
-        };
+//         let options = {
+//             mode: 'text',
+//             pythonOptions: ['-u'], // get print results in real-time
+//             args: [inputString.join(" ")]
+//         };
 
 
-        PythonShell.run('main2.py', options).then(result => {
-            console.log(result)
-            res.send(result)
+//         PythonShell.run('main2.py', options).then(result => {
+//             // console.log(result)
+//             res.send(result)
 
-        }).catch(err => {
-            console.log("Error occured")
-            res.send(err);
-        })
-    });
+//         }).catch(err => {
+//             console.log("Error occured")
+//             res.send(err);
+//         })
+//     });
 
 module.exports = router

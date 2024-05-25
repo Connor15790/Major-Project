@@ -53,21 +53,21 @@ export default Casualties2 = ({ route, navigation, props }) => {
             }
         };
 
-        const getData2 = async () => {
-            try {
-                const result = await fetchMedsData();
-                setmData(result);
-            } catch (error) {
-                setmError(error);
-            } finally {
-                setmLoading(false);
-            }
-        };
+        // const getData2 = async () => {
+        //     try {
+        //         const result = await fetchMedsData();
+        //         setmData(result);
+        //     } catch (error) {
+        //         setmError(error);
+        //     } finally {
+        //         setmLoading(false);
+        //     }
+        // };
         
-        console.log(dloading)
+        // console.log(dloading)
         
         getData1();
-        getData2();
+        // getData2();
     }, []);
     
     if (dloading && mloading) {

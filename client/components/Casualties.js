@@ -9,7 +9,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import Navbar from './Navbar';
-import { MultipleSelectList } from 'react-native-dropdown-select-list'
+import { MultipleSelectList } from 'react-native-dropdown-select-list';
+import axios from 'axios';
+import { apiPost } from './common/axios';
 
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
@@ -18,9 +20,43 @@ MaterialCommunityIcons.loadFont();
 export default Casualties = ({ navigation }) => {
     const [selected, setSelected] = React.useState([]);
 
-    useEffect(() => {
-        console.log(selected);
-    });
+    // useEffect(() => {
+    //     // console.log(selected);
+    // });
+
+    const sendDiseaseData = async () => {
+        console.log(selected)
+        apiPost('/casuality/predictdisease', selected);
+    };
+
+    // const sendMedsData = () => {
+    //     axios.post('http://192.168.6.81:3000/api/casuality/predictmeds', {
+    //         data: selected
+    //     })
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //         console.error(error);
+    //     });
+    // };
+
+    const navigate2Casualties2 = () => {
+        navigation.navigate("Casualties2", {
+            synopsis: synopsisselected,
+            selectedId: selectedId,
+            name: name,
+            gender: selectedLabel,
+            age: ageselected,
+            bloodGroup: bgselected
+        })
+    }
+
+    const handleNextPress = () => {
+        sendDiseaseData();
+        // sendMedsData();
+        navigate2Casualties2();
+    };
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -224,14 +260,7 @@ export default Casualties = ({ navigation }) => {
                             borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1
                         }]}
 
-                        onPress={() => navigation.navigate("Casualties2", {
-                            synopsis: synopsisselected,
-                            selectedId: selectedId,
-                            name: name,
-                            gender: selectedLabel,
-                            age: ageselected,
-                            bloodGroup: bgselected
-                        })}
+                        onPress={handleNextPress}
 
                         disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
                         <Text style={styles.nextBtnText}>Next</Text>
