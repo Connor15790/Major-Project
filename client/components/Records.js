@@ -11,7 +11,6 @@ import { format } from 'date-fns';
 import { apiPost, apiGet } from './common/axios';
 import Navbar from './Navbar';
 
-
 SplashScreen.preventAutoHideAsync();
 Feather.loadFont();
 MaterialCommunityIcons.loadFont();
@@ -24,29 +23,18 @@ export default Records = ({ navigation }) => {
         { label: 'Settings', value: 'settings' },
         { label: 'Logout', value: 'logout', },
     ]);
-
-    const handleDropdownChange = (item) => {
-        // Handle actions based on selected dropdown item
-        // console.log('Selected:', item);
-
-        if (item === 'profile') {
-            navigation.navigate("Profile1");
-        } else if (item === 'settings') {
-            navigation.navigate("Settings");
-        }
-
-        // Close the dropdown after selection
-        setOpen(false);
-    };
-
     const [name, setName] = useState("");
     const [checkedItems, setCheckedItems] = useState(false);
-    const [patientModalVisible, setPatientModalVisible] = useState(false);
-    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
     const [cardData, setCardData] = useState([]);
     const [originalCardData, setOriginalCardData] = useState([]);
-    const [itemToDelete, setItemToDelete] = useState(null);
     const [selectedPatient, setSelectedPatient] = useState(null);
+
+    const [itemToEdit, setItemToEdit] = useState(null);
+    const [itemToDelete, setItemToDelete] = useState(null);
+
+    const [patientModalVisible, setPatientModalVisible] = useState(false);
+    const [editModalVisible, setEditModalVisible] = useState(false);
+    const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
     useEffect(() => {
         async function fetchPatientData() {
@@ -79,7 +67,19 @@ export default Records = ({ navigation }) => {
         }
     }, [name]);
 
+    const handleDropdownChange = (item) => {
+        // Handle actions based on selected dropdown item
+        // console.log('Selected:', item);
 
+        if (item === 'profile') {
+            navigation.navigate("Profile1");
+        } else if (item === 'settings') {
+            navigation.navigate("Settings");
+        }
+
+        // Close the dropdown after selection
+        setOpen(false);
+    };
 
     //function to toggle different checkboxes
     const toggleCheckbox = async (itemId) => {
@@ -103,6 +103,12 @@ export default Records = ({ navigation }) => {
                     item.primarySynopsis.toLowerCase().includes(name.toLowerCase())
             );
         }
+    };
+
+    //function to edit a patient
+    const handleEdit = (itemId) => {
+        setItemToEdit(itemId);
+        setEditModalVisible(true);
     };
 
     //function to delete a patient
@@ -174,7 +180,7 @@ export default Records = ({ navigation }) => {
                         <Text style={styles.modalText1}>Gender: {selectedPatient?.gender}</Text>
                         <Text style={styles.modalText1}>Blood Group: {selectedPatient?.bloodGroup}</Text>
                         <Text style={styles.modalText1}>Synopsis: {selectedPatient?.primarySynopsis}</Text>
-                        <Text style={styles.modalText1}>Status: {selectedPatient?.checked? "Checked":"Not checked"}</Text>
+                        <Text style={styles.modalText1}>Status: {selectedPatient?.checked ? "Checked" : "Not checked"}</Text>
                         <Text style={styles.modalText1}>Symtoms: {selectedPatient?.injuryDetails?.symptoms}</Text>
                         <Text style={styles.modalText1}>Allergies: {selectedPatient?.injuryDetails?.allergies}</Text>
                         <Text style={styles.modalText1}>Previous Medications: {selectedPatient?.injuryDetails?.previousMedications}</Text>
@@ -193,6 +199,53 @@ export default Records = ({ navigation }) => {
                 </View>
             </Modal>
 
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={editModalVisible}
+                backdropOpacity={0.5}
+            >
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>{selectedPatient?.patientName}</Text>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Age: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.age}</TextInput>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Gender: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.gender}</TextInput>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Blood Group: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.bloodGroup}</TextInput>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Synopsis: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.primarySynopsis}</TextInput>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Status: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.checked ? "Checked" : "Not checked"}</TextInput>
+                        </View>
+                        <View style={{ flexDirection: "row" }}>
+                            <Text style={styles.modalText1}>Symtoms: </Text>
+                            <TextInput style={styles.modalText1}>{selectedPatient?.injuryDetails?.symptoms}</TextInput>
+                        </View>
+                        <View style={styles.closeBtn}>
+                            <TouchableOpacity
+                                style={[styles.button0, styles.buttonClose0]}
+                                onPress={() => {
+                                    setEditModalVisible(!editModalVisible);
+                                    setSelectedPatient(null); // Clear selected patient after closing modal
+                                }}
+                            >
+                                <Text style={styles.textStyle0}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
 
             <Modal
                 animationType="slide"
@@ -255,7 +308,14 @@ export default Records = ({ navigation }) => {
                                     onClick={() => toggleCheckbox(item._id)}
                                 />
                                 <View style={styles.editnDelete}>
-                                    <TouchableOpacity style={styles.editBtn} onPress={() => { }}>
+                                    <TouchableOpacity
+                                        key={item._id}
+                                        style={styles.editBtn}
+                                        onPress={() => {
+                                            setSelectedPatient(item);
+                                            setEditModalVisible(true);
+                                        }}
+                                    >
                                         <Image
                                             source={require('../assets/icons/edit.png')}
                                             resizeMode='contain'

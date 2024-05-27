@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalView: {
         margin: 20,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     },
     modalText1: {
         marginTop: 3,
-        fontFamily: "Montserrat-Medium" 
+        fontFamily: "Montserrat-Medium",
     },
     button1: {
         borderRadius: 10,

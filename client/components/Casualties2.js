@@ -101,7 +101,7 @@ export default Casualties2 = ({ route, navigation, props }) => {
     const submitForm = async () => {
         try {
             const formData = {
-                primarySynopsis: synopsis,
+                primarySynopsis: disease,
                 patientName: name,
                 gender: gender,
                 timeOfAccident: timeselected,
