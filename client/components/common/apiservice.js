@@ -16,7 +16,7 @@ export const fetchDiseaseData = async () => {
 
 export const fetchMedsData = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/casuality/predictmeds`);
+    const response = await axios.post(`${API_BASE_URL}/casuality/predictmeds`);
     return response.data[0];
   } catch (error) {
     console.error("Error fetching data:", error);

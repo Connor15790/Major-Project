@@ -89,8 +89,8 @@ export default Home = ({ navigation, prop }) => {
                 <TouchableOpacity style={styles.recordsHeader} onPress={() => navigation.navigate("Records")}>
                     <Text style={styles.recordsTitle}>Records</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.emergencyHeader}>
-                    <Text style={styles.emergencyTitle} onPress={() => navigation.navigate("Emergencies")}>Emergencies</Text>
+                <TouchableOpacity style={styles.emergencyHeader} onPress={() => navigation.navigate("Emergencies")}>
+                    <Text style={styles.emergencyTitle}>Emergencies</Text>
                 </TouchableOpacity>
             </View>
         </View>

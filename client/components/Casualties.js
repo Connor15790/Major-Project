@@ -20,8 +20,10 @@ MaterialCommunityIcons.loadFont();
 export default Casualties = ({ navigation }) => {
     const [selected, setSelected] = React.useState([]);
     const [disease, setDisease] = React.useState([]);
+    const [medications, setMedications] = React.useState([]);
 
     // useEffect(() => {
+    //     sendDiseaseData();
     //     // console.log(selected);
     // });
 
@@ -32,17 +34,12 @@ export default Casualties = ({ navigation }) => {
         setDisease(disease);
     };
 
-    // const sendMedsData = () => {
-    //     axios.post('http://192.168.6.81:3000/api/casuality/predictmeds', {
-    //         data: selected
-    //     })
-    //     .then(response => {
-    //         console.log(response.data);
-    //     })
-    //     .catch(error => {
-    //         console.error(error);
-    //     });
-    // };
+    const sendMedsData = async () => {
+        console.log(selected.join(" "))
+        const meds = await apiPost('/casuality/predictmeds', selected);
+        console.log(meds)
+        setMedications(meds);
+    };
 
     const navigate2Casualties2 = () => {
         navigation.navigate("Casualties2", {
@@ -52,12 +49,18 @@ export default Casualties = ({ navigation }) => {
             gender: selectedLabel,
             age: ageselected,
             bloodGroup: bgselected,
-            disease: disease
+            disease: disease,
+            medications: medications
         })
     }
 
+    const handleConfirmPress = async () => {
+        await sendDiseaseData();
+        await sendMedsData();
+    }
+
     const handleNextPress = () => {
-        sendDiseaseData();
+        // sendDiseaseData();
         // sendMedsData();
         navigate2Casualties2();
     };
@@ -258,6 +261,18 @@ export default Casualties = ({ navigation }) => {
             </View> */}
 
                 <View style={styles.nextContainer}>
+                    <TouchableOpacity
+                        style={[styles.confirmbtn, {
+                            backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
+                            borderWidth: !selectedId || !name || !bgselected || !synopsisselected ? 0 : 1
+                        }]}
+
+                        onPress={handleConfirmPress}
+
+                        disabled={!selectedId || !name || !bgselected || !synopsisselected ? true : false}>
+                        <Text style={styles.nextBtnText}>Confirm</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         style={[styles.nextBtn, {
                             backgroundColor: !selectedId || !name || !bgselected || !synopsisselected ? "#B7BCB5" : "black",
