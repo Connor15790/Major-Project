@@ -191,6 +191,14 @@ const styles = StyleSheet.create({
         marginTop: 3,
         fontFamily: "Montserrat-Medium",
     },
+    modalTextInput: {
+        backgroundColor: "white",
+        justifyContent: "center",
+        paddingLeft: 10,
+        borderRadius: 3,
+        // borderWidth: 1,
+        // // width: 100
+    },
     button1: {
         borderRadius: 10,
         paddingVertical: 5,
@@ -220,7 +228,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     closeBtn: {
-
+        flexDirection: "row",
+        justifyContent: "space-between"
     },
     buttonConfirm: {
         backgroundColor: "white"
@@ -238,7 +247,8 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         elevation: 2,
         marginTop: 10,
-        paddingHorizontal: 12
+        paddingHorizontal: 12,
+        width: 80
     },
     buttonClose0: {
         backgroundColor: 'black',

@@ -36,6 +36,15 @@ export default Records = ({ navigation }) => {
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
+    const [formData, setFormData] = useState({
+        name: selectedPatient?.patientName,
+        age: "",
+        bloodgroup: selectedPatient?.bloodGroup,
+        synopsis: selectedPatient?.primarySynopsis,
+        status: selectedPatient?.checked ? "Checked" : "Not checked",
+        symptoms: selectedPatient?.injuryDetails?.symptoms
+    })
+
     useEffect(() => {
         async function fetchPatientData() {
             const response = await apiGet('/casuality/getPatient')
@@ -106,9 +115,8 @@ export default Records = ({ navigation }) => {
     };
 
     //function to edit a patient
-    const handleEdit = (itemId) => {
-        setItemToEdit(itemId);
-        setEditModalVisible(true);
+    const handleEdit = () => {
+
     };
 
     //function to delete a patient
@@ -136,6 +144,13 @@ export default Records = ({ navigation }) => {
         } catch (error) {
             console.error('Error deleting item:', error);
         }
+    };
+
+    const handleChange = (name, value) => {
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     };
 
     return (
@@ -182,8 +197,6 @@ export default Records = ({ navigation }) => {
                         <Text style={styles.modalText1}>Synopsis: {selectedPatient?.primarySynopsis}</Text>
                         <Text style={styles.modalText1}>Status: {selectedPatient?.checked ? "Checked" : "Not checked"}</Text>
                         <Text style={styles.modalText1}>Symtoms: {selectedPatient?.injuryDetails?.symptoms}</Text>
-                        <Text style={styles.modalText1}>Allergies: {selectedPatient?.injuryDetails?.allergies}</Text>
-                        <Text style={styles.modalText1}>Previous Medications: {selectedPatient?.injuryDetails?.previousMedications}</Text>
                         <View style={styles.closeBtn}>
                             <TouchableOpacity
                                 style={[styles.button0, styles.buttonClose0]}
@@ -208,31 +221,75 @@ export default Records = ({ navigation }) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{selectedPatient?.patientName}</Text>
-                        <View style={{ flexDirection: "row" }}>
+                        <View style={{ flexDirection: "row", borderBottomWidth: 1 }}>
                             <Text style={styles.modalText1}>Age: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.age}</TextInput>
+                            <TextInput
+                                style={styles.modalTextInput}
+                                value={formData.age}
+                                onChangeText={(value) => handleChange('age', value)}
+                            >
+                                {selectedPatient?.age}
+                            </TextInput>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Gender: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.gender}</TextInput>
+                            <TextInput 
+                                style={styles.modalTextInput}
+                                // value={formData.gender}
+                                onChangeText={(value) => handleChange('gender', value)}
+                            >
+                                {selectedPatient?.gender}
+                            </TextInput>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Blood Group: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.bloodGroup}</TextInput>
+                            <TextInput 
+                                style={styles.modalTextInput}
+                                // value={formData.bloodgroup}
+                                onChangeText={(value) => handleChange('bloodgroup', value)}
+                            >
+                                {selectedPatient?.bloodGroup}
+                            </TextInput>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Synopsis: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.primarySynopsis}</TextInput>
+                            <TextInput 
+                                style={styles.modalTextInput}
+                                // value={formData.synopsis}
+                                onChangeText={(value) => handleChange('synopsis', value)}
+                            >
+                                {selectedPatient?.primarySynopsis}
+                            </TextInput>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Status: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.checked ? "Checked" : "Not checked"}</TextInput>
+                            <TextInput 
+                                style={styles.modalTextInput}
+                                // value={formData.status}
+                                onChangeText={(value) => handleChange('status', value)}
+                            >
+                                {selectedPatient?.checked ? "Checked" : "Not checked"}
+                            </TextInput>
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Symtoms: </Text>
-                            <TextInput style={styles.modalText1}>{selectedPatient?.injuryDetails?.symptoms}</TextInput>
+                            <TextInput 
+                                style={styles.modalTextInput}
+                                // value={formData.symptoms}
+                                onChangeText={(value) => handleChange('symptoms', value)}
+                            >
+                                {selectedPatient?.injuryDetails?.symptoms}
+                            </TextInput>
                         </View>
+
                         <View style={styles.closeBtn}>
+                            <TouchableOpacity
+                                style={[styles.button0, styles.buttonClose0]}
+                                onPress={handleEdit}
+                            >
+                                <Text style={styles.textStyle0}>Edit</Text>
+                            </TouchableOpacity>
+
                             <TouchableOpacity
                                 style={[styles.button0, styles.buttonClose0]}
                                 onPress={() => {
