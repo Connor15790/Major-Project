@@ -7,6 +7,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 50
     },
+    beginningtextcontainer: {
+        textAlign: "justify",
+        paddingHorizontal: 20,
+        marginBottom: 10
+    },
+    beginningtext: {
+        fontSize: 16,
+        textAlign: "justify",
+        marginTop: 2,
+        fontFamily: "Montserrat-SemiBold"
+    },
     row: {
         flexDirection: 'row',
     },
@@ -36,6 +47,15 @@ const styles = StyleSheet.create({
     },
     imageStyle: {
         borderRadius: 10,
+    },
+    beginningtextA: {
+        fontSize: 18,
+        fontFamily: "Montserrat-Bold"
+    },
+    beginningtextB: {
+        marginTop: 10,
+        fontSize: 18,
+        fontFamily: "Montserrat-Bold"
     }
 })
 

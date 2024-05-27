@@ -36,14 +36,13 @@ export default Records = ({ navigation }) => {
     const [editModalVisible, setEditModalVisible] = useState(false);
     const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-    const [formData, setFormData] = useState({
-        name: selectedPatient?.patientName,
-        age: "",
-        bloodgroup: selectedPatient?.bloodGroup,
-        synopsis: selectedPatient?.primarySynopsis,
-        status: selectedPatient?.checked ? "Checked" : "Not checked",
-        symptoms: selectedPatient?.injuryDetails?.symptoms
-    })
+    const [patientName, setPatientName] = useState(selectedPatient?.name || "");
+    const [age, setAge] = useState(selectedPatient?.age || "");
+    const [gender, setGender] = useState(selectedPatient?.gender || "");
+    const [bloodgroup, setBloodgroup] = useState(selectedPatient?.bloodGroup || "");
+    const [synopsis, setSynopsis] = useState(selectedPatient?.primarySynopsis || "");
+    const [status, setStatus] = useState(selectedPatient?.checked ? "Checked" : "Not Checked");
+    const [patientSymptoms, setPatientSymptoms] = useState(selectedPatient?.injuryDetails?.symptoms || "")
 
     useEffect(() => {
         async function fetchPatientData() {
@@ -116,7 +115,14 @@ export default Records = ({ navigation }) => {
 
     //function to edit a patient
     const handleEdit = () => {
-
+        const formData = {
+            age,
+            gender,
+            bloodgroup,
+            synopsis,
+            status,
+            symptoms
+        };
     };
 
     //function to delete a patient
@@ -144,13 +150,6 @@ export default Records = ({ navigation }) => {
         } catch (error) {
             console.error('Error deleting item:', error);
         }
-    };
-
-    const handleChange = (name, value) => {
-        setFormData({
-            ...formData,
-            [name]: value
-        });
     };
 
     return (
@@ -225,15 +224,14 @@ export default Records = ({ navigation }) => {
                             <Text style={styles.modalText1}>Age: </Text>
                             <TextInput
                                 style={styles.modalTextInput}
-                                value={formData.age}
-                                onChangeText={(value) => handleChange('age', value)}
+                                value={age}
+                                onChangeText={(inputText) => setAge(inputText)}
                             >
-                                {selectedPatient?.age}
                             </TextInput>
                         </View>
-                        <View style={{ flexDirection: "row" }}>
+                        {/* <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Gender: </Text>
-                            <TextInput 
+                            <TextInput
                                 style={styles.modalTextInput}
                                 // value={formData.gender}
                                 onChangeText={(value) => handleChange('gender', value)}
@@ -243,7 +241,7 @@ export default Records = ({ navigation }) => {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Blood Group: </Text>
-                            <TextInput 
+                            <TextInput
                                 style={styles.modalTextInput}
                                 // value={formData.bloodgroup}
                                 onChangeText={(value) => handleChange('bloodgroup', value)}
@@ -253,7 +251,7 @@ export default Records = ({ navigation }) => {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Synopsis: </Text>
-                            <TextInput 
+                            <TextInput
                                 style={styles.modalTextInput}
                                 // value={formData.synopsis}
                                 onChangeText={(value) => handleChange('synopsis', value)}
@@ -263,7 +261,7 @@ export default Records = ({ navigation }) => {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Status: </Text>
-                            <TextInput 
+                            <TextInput
                                 style={styles.modalTextInput}
                                 // value={formData.status}
                                 onChangeText={(value) => handleChange('status', value)}
@@ -273,14 +271,14 @@ export default Records = ({ navigation }) => {
                         </View>
                         <View style={{ flexDirection: "row" }}>
                             <Text style={styles.modalText1}>Symtoms: </Text>
-                            <TextInput 
+                            <TextInput
                                 style={styles.modalTextInput}
                                 // value={formData.symptoms}
                                 onChangeText={(value) => handleChange('symptoms', value)}
                             >
                                 {selectedPatient?.injuryDetails?.symptoms}
                             </TextInput>
-                        </View>
+                        </View> */}
 
                         <View style={styles.closeBtn}>
                             <TouchableOpacity

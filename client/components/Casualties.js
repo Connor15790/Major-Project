@@ -109,8 +109,10 @@ export default Casualties = ({ navigation }) => {
     const [selectedLabel, setSelectedLabel] = useState(null);
     const [ageselected, setAgeSelected] = useState("");
     const [bgselected, setBgSelected] = useState("");
+    const [injuryTime, setInjuryTime] = useState("");
     const [synopsisselected, setSynopsisSelected] = useState([]);
-    const [name, setName] = useState("")
+    const [name, setName] = useState("");
+    const [injuryLocation, setInjuryLocation] = useState("")
 
     const agedata = [
         { key: '1', value: '1-3 Y' },
@@ -131,6 +133,17 @@ export default Casualties = ({ navigation }) => {
         { key: '6', value: 'O-' },
         { key: '7', value: 'AB+' },
         { key: '8', value: 'AB-' },
+    ]
+
+    const timeinjury = [
+        { key: '1', value: '15 mins ago' },
+        { key: '2', value: '30 mins ago' },
+        { key: '3', value: '1 hr ago' },
+        { key: '4', value: '2 hr ago' },
+        { key: '5', value: '3 hr ago' },
+        { key: '6', value: '4 hr ago' },
+        { key: '7', value: '5 hr ago' },
+        { key: '8', value: '6 hr ago' },
     ]
 
     const synopsisdata2 = [
@@ -247,6 +260,33 @@ export default Casualties = ({ navigation }) => {
                         />
                     </View>
                 </View>
+
+                {/* <View style={styles.bgContainer}>
+                    <Text style={styles.bgHeader}>Time of Injury*:</Text>
+                    <View style={styles.bgWrapper}>
+                        <SelectList
+                            setSelected={(val) => setInjuryTime(val)}
+                            data={timeinjury}
+                            save="value"
+                            maxHeight={100}
+                            boxStyles={styles.bgBox}
+                            inputStyles={{ paddingHorizontal: 0 }}
+                            dropdownStyles={styles.bgDropdown}
+                        />
+                    </View>
+                </View>
+
+                <View style={styles.nameSearchContainer}>
+                    <Text style={styles.nameHeader}>Location of Injury*:</Text>
+                    <View style={styles.nameSearchWrapper}>
+                        <TextInput
+                            style={styles.nameSearchInput}
+                            value={name}
+                            onChangeText={(inputText) => setName(inputText)}
+                            placeholder='Location'
+                        />
+                    </View>
+                </View> */}
 
                 {/* <View style={styles.nameSearchContainer}>
                 <Text style={styles.nameHeader}>Name*:</Text>

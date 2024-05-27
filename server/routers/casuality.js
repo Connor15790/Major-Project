@@ -141,11 +141,11 @@ router.route('/predictdisease')
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            args: inputString
+            args: req.body.join(" ")
         };
 
         PythonShell.run('main.py', options).then(result => {
-            // console.log(result)
+            console.log(result)
             res.send(result)
 
         }).catch(err => {
@@ -169,26 +169,26 @@ router.route('/editPatientDetails')
     }
 })
 
-// router.route('/predictmeds')
-//     .get(async (req, res) => {
+router.route('/predictmeds')
+    .post(async (req, res) => {
 
-//         const inputString = [];
+        const inputString = [];
 
-//         let options = {
-//             mode: 'text',
-//             pythonOptions: ['-u'], // get print results in real-time
-//             args: [inputString.join(" ")]
-//         };
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            args: req.body.join(" ")
+        };
 
 
-//         PythonShell.run('main2.py', options).then(result => {
-//             // console.log(result)
-//             res.send(result)
+        PythonShell.run('main2.py', options).then(result => {
+            // console.log(result)
+            res.send(result)
 
-//         }).catch(err => {
-//             console.log("Error occured")
-//             res.send(err);
-//         })
-//     });
+        }).catch(err => {
+            console.log("Error occured")
+            res.send(err);
+        })
+    });
 
 module.exports = router
