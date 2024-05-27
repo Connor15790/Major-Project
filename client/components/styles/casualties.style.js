@@ -173,8 +173,18 @@ const styles = StyleSheet.create({
     nextContainer: {
         marginTop: 40,
         justifyContent: "center",
-        flexDirection: "column",
+        flexDirection: "row",
         alignItems: "center",
+    },
+    confirmbtn: {
+        paddingVertical: 10,
+        paddingHorizontal: 30,
+        borderColor: "black",
+        borderWidth: 2,
+        marginTop: 30,
+        borderRadius: 10,
+        marginLeft: 120,
+        backgroundColor: "black"
     },
     nextBtn: {
         paddingVertical: 10,
@@ -183,7 +193,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         marginTop: 30,
         borderRadius: 10,
-        marginLeft: 260,
+        marginLeft: 20,
         backgroundColor: "black"
     },
     nextBtnText: {

@@ -21,6 +21,16 @@ import About from './components/About';
 import Changepass from './components/Changepass';
 import Help from './components/Help';
 import Emergencies from './components/Emergencies';
+import Blood_Loss from './components/emergency_tab/Blood_Loss';
+import Cuts from './components/emergency_tab/Cuts';
+import Fracture from './components/emergency_tab/Fracture';
+import Allergies from './components/emergency_tab/Allergies';
+import Infections from './components/emergency_tab/Infections';
+import Drowning from './components/emergency_tab/Drowning';
+import Heart_Attack from './components/emergency_tab/Heart_Attack';
+import Choking from './components/emergency_tab/Choking';
+import Strokes from './components/emergency_tab/Strokes';
+import Overdose from './components/emergency_tab/Overdose';
 
 const Stack = createNativeStackNavigator();
 
@@ -123,6 +133,76 @@ export default function App() {
                     <Stack.Screen
                         name="Emergencies"
                         component={Emergencies}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Blood_Loss"
+                        component={Blood_Loss}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Cuts"
+                        component={Cuts}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Fractures"
+                        component={Fracture}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Allergies"
+                        component={Allergies}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Infections"
+                        component={Infections}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Drowning"
+                        component={Drowning}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Heart_Attack"
+                        component={Heart_Attack}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Choking"
+                        component={Choking}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Strokes"
+                        component={Strokes}
+                        options={{
+                            headerShown: false
+                        }}
+                    />
+                    <Stack.Screen
+                        name="Overdose"
+                        component={Overdose}
                         options={{
                             headerShown: false
                         }}

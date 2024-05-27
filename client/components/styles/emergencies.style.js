@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flex: 1,
-        marginHorizontal: 10,
+        marginHorizontal: 9,
     },
     emerbuttons: {
         borderColor: "black",

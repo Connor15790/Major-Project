@@ -132,16 +132,16 @@ router.route('/deletePatient')
     })
 
 router.route('/predictdisease')
-
+    
     .post(async (req, res) => {
 
         const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
-        console.log(req.body)
+        console.log(req.body.join(" "))
 
         let options = {
             mode: 'text',
             pythonOptions: ['-u'], // get print results in real-time
-            args: inputString
+            args: req.body.join(" ")
         };
 
         PythonShell.run('main.py', options).then(result => {
@@ -154,41 +154,26 @@ router.route('/predictdisease')
         })
     });
 
-router.route('/editPatientDetails')
-    .post(async (req, res) => {
-        try {
-            const { patientId, primarySynopsis, patientName } = req.body;
-
-            const updatedCasuality = await casuality.findByIdAndUpdate
-                (patientId, { primarySynopsis, patientName }, { new: true });
-
-            res.json({ status: 200, message: 'Casuality details updated successfully', data: updatedCasuality });
-        } catch (error) {
-            console.error('Error updating casuality details:', error);
-            res.json({ status: 500, message: 'Internal server error' });
-        }
-    })
-
 // router.route('/predictmeds')
 //     .get(async (req, res) => {
 
-//         const inputString = [];
+        const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
 
-//         let options = {
-//             mode: 'text',
-//             pythonOptions: ['-u'], // get print results in real-time
-//             args: [inputString.join(" ")]
-//         };
+        let options = {
+            mode: 'text',
+            pythonOptions: ['-u'], // get print results in real-time
+            args: req.body.join(" ")
+        };
 
 
-//         PythonShell.run('main2.py', options).then(result => {
-//             // console.log(result)
-//             res.send(result)
+        PythonShell.run('main2.py', options).then(result => {
+            // console.log(result)
+            res.send(result)
 
-//         }).catch(err => {
-//             console.log("Error occured")
-//             res.send(err);
-//         })
-//     });
+        }).catch(err => {
+            console.log("Error occured")
+            res.send(err);
+        })
+    });
 
 module.exports = router
