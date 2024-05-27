@@ -132,7 +132,7 @@ router.route('/deletePatient')
     })
 
 router.route('/predictdisease')
-    
+
     .post(async (req, res) => {
 
         const inputString = "stomach_pain acidity ulcers_on_tongue vomiting cough chest_pain";
@@ -153,6 +153,21 @@ router.route('/predictdisease')
             res.send(err);
         })
     });
+
+router.route('/editPatientDetails')
+    .post(async (req, res) => {
+        try {
+            const { patientId, primarySynopsis, patientName } = req.body;
+
+            const updatedCasuality = await casuality.findByIdAndUpdate
+                (patientId, { primarySynopsis, patientName }, { new: true });
+
+            res.json({ status: 200, message: 'Casuality details updated successfully', data: updatedCasuality });
+        } catch (error) {
+            console.error('Error updating casuality details:', error);
+            res.json({ status: 500, message: 'Internal server error' });
+        }
+    })
 
 // router.route('/predictmeds')
 //     .get(async (req, res) => {
